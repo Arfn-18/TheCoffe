@@ -1,0 +1,21 @@
+.sidebar {
+    position: fixed;
+    z-index: 999;
+    width: 299px;
+}
+
+.konten {
+    margin-top: 16px;
+}
+
+
+@media screen and (max-width: 992px) {
+    .konten {
+        margin-top: 86px;
+    }
+
+    .sidebar {
+        width: 95%;
+        background: none;
+    }
+}
