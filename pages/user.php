@@ -20,30 +20,30 @@ while ($data = mysqli_fetch_array($query)) {
             </div>
             <!-- Modal Add User-->
             <div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-fullscreen-md">
+                <div class="modal-dialog modal-xl modal-fullscreen-md-down">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Add User</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="">
+                            <form action="controller/proses_user.php" method="POST">
                                 <div class="row">
                                     <div class="col-sm">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingInput" placeholder="Your Name">
+                                            <input type="text" name="nama" class="form-control" id="floatingInput" placeholder="Your Name">
                                             <label for="floatingInput">Nama</label>
                                         </div>
                                     </div>
                                     <div class="col-sm">
                                         <div class="form-floating mb-3">
-                                            <input type="email" class="form-control" id="floatingInput" placeholder="username@example.com">
+                                            <input type="email" name="username" class="form-control" id="floatingInput" placeholder="username@example.com">
                                             <label for="floatingInput">Username</label>
                                         </div>
                                     </div>
                                     <div class="col-sm">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingInput" placeholder="********">
+                                            <input type="text" name="password" class="form-control" id="floatingInput" placeholder="********" disabled value="123123">
                                             <label for="floatingPassword">Password</label>
                                         </div>
                                     </div>
@@ -51,32 +51,33 @@ while ($data = mysqli_fetch_array($query)) {
                                 <div class="row">
                                     <div class="col col-md-4">
                                         <div class="form-floating mb-3">
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select class="form-select" name="level" aria-label="Default select example">
                                                 <option selected disabled hidden>Pilih Level</option>
                                                 <option value="1">Admin</option>
                                                 <option value="2">Pelayan</option>
                                                 <option value="3">Kasir</option>
                                                 <option value="4">Dapur</option>
                                             </select>
+                                            <label for="floatingInput">Level User</label>
                                         </div>
                                     </div>
                                     <div class="col col-md-8">
                                         <div class="form-floating">
-                                            <input type="number" class="form-control" id="floatingPassword" placeholder="08xxxxxxx">
+                                            <input type="number" name="nohp" class="form-control" id="floatingPassword" placeholder="08xxxxxxx">
                                             <label for="floatingInput">No Hp</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <textarea name="" class="form-control" id="" style="height: 100px;"></textarea>
+                                    <textarea name="alamat" class="form-control" id="" style="height: 100px;"></textarea>
                                     <label for="floatingInput">Alamat</label>
                                 </div>
-                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -101,6 +102,7 @@ while ($data = mysqli_fetch_array($query)) {
                 </div>
             </div>
             <!-- End Modal View User -->
+
             <?php
             if (empty($user)) {
                 echo "Tidak ada data";
