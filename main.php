@@ -6,7 +6,7 @@ if (empty($_SESSION['username_thecoffe'])) {
 ?>
 
 <!doctype html>
-<html lang="en" data-bs-theme="light">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="utf-8">
@@ -17,7 +17,7 @@ if (empty($_SESSION['username_thecoffe'])) {
     <link rel="stylesheet" href="src/css/style.css">
 </head>
 
-<body style="height: 3000px;">
+<body>
     <!-- Header -->
     <?php include 'components/header.php'; ?>
 
@@ -37,6 +37,8 @@ if (empty($_SESSION['username_thecoffe'])) {
     <?php include 'components/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>

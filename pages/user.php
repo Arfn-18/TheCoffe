@@ -27,31 +27,40 @@ while ($data = mysqli_fetch_array($query)) {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="controller/proses_user.php" method="POST">
+                            <form class="needs-validation" novalidate action="controller/proses_user.php" method="POST">
                                 <div class="row">
                                     <div class="col-sm">
                                         <div class="form-floating mb-3">
-                                            <input type="text" name="nama" class="form-control" id="floatingInput" placeholder="Your Name">
+                                            <input type="text" class="form-control" id="floatingInput" placeholder="Your Name" name="nama" required>
                                             <label for="floatingInput">Nama</label>
+                                            <div class="invalid-feedback">
+                                                Masukan Nama.
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-sm">
                                         <div class="form-floating mb-3">
-                                            <input type="email" name="username" class="form-control" id="floatingInput" placeholder="username@example.com">
+                                            <input type="email" class="form-control" id="floatingInput" placeholder="username@example.com" name="username" required>
                                             <label for="floatingInput">Username</label>
+                                            <div class="invalid-feedback">
+                                                Masukan Username Email.
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-sm">
                                         <div class="form-floating mb-3">
-                                            <input type="text" name="password" class="form-control" id="floatingInput" placeholder="********" disabled value="123123">
+                                            <input type="password" class="form-control" id="floatingInput" placeholder="********" name="password" value="123123" required>
                                             <label for="floatingPassword">Password</label>
+                                            <div class="invalid-feedback">
+                                                Masukan Password.
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col col-md-4">
                                         <div class="form-floating mb-3">
-                                            <select class="form-select" name="level" aria-label="Default select example">
+                                            <select class="form-select" name="level" aria-label="Default select example" required>
                                                 <option selected disabled hidden>Pilih Level</option>
                                                 <option value="1">Admin</option>
                                                 <option value="2">Pelayan</option>
@@ -59,25 +68,34 @@ while ($data = mysqli_fetch_array($query)) {
                                                 <option value="4">Dapur</option>
                                             </select>
                                             <label for="floatingInput">Level User</label>
+                                            <div class="invalid-feedback">
+                                                Masukan Level User.
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col col-md-8">
-                                        <div class="form-floating">
-                                            <input type="number" name="nohp" class="form-control" id="floatingPassword" placeholder="08xxxxxxx">
+                                        <div class="form-floating mb-3">
+                                            <input type="number" name="nohp" class="form-control" id="floatingPassword" placeholder="08xxxxxxx" required>
                                             <label for="floatingInput">No Hp</label>
+                                            <div class="invalid-feedback">
+                                                Masukan Nomor Hp.
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <textarea name="alamat" class="form-control" id="" style="height: 100px;"></textarea>
+                                    <textarea name="alamat" class="form-control" id="" style="height: 100px;" required></textarea>
                                     <label for="floatingInput">Alamat</label>
+                                    <div class="invalid-feedback">
+                                        Masukan Alamat.
+                                    </div>
                                 </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" name="input_user_validate" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -127,8 +145,8 @@ while ($data = mysqli_fetch_array($query)) {
                             ?>
                                 <tr>
                                     <th scope="row"><?php echo $no++ ?></th>
-                                    <td><?php echo $row['username'] ?></td>
                                     <td><?php echo $row['nama'] ?></td>
+                                    <td><?php echo $row['username'] ?></td>
                                     <td><?php echo $row['level'] ?></td>
                                     <td><?php echo $row['nohp'] ?></td>
                                     <td>
@@ -152,3 +170,26 @@ while ($data = mysqli_fetch_array($query)) {
     </div>
 </div>
 </div>
+
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
