@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand bg-primary sticky-top">
     <div class="container-lg">
-        <a class="navbar-brand" href="dashboard"><i class="bi bi-yin-yang"></i> TheCoffe</a>
+        <a class="navbar-brand" href="dashboard"><i class="bi bi-cup-hot-fill"></i> TheCoffe</a>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
