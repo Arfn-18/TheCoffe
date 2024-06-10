@@ -9,7 +9,7 @@ if (!empty(isset($_POST['username']))) {
     $query = mysqli_query($con, "SELECT * FROM tb_user WHERE username = '$username' AND password = '$password'");
     $return = mysqli_fetch_array($query);
     if ($return) {
-        $_SESSION['username_followup'] = $username;
+        $_SESSION['username_thecoffe'] = $username;
         header('location:../dashboard');
     } else {
 ?>

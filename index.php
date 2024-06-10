@@ -6,6 +6,9 @@ if (isset($_GET['page']) && $_GET['page'] == 'dashboard') {
 } else if (isset($_GET['page']) && $_GET['page'] == 'order') {
     $page = 'pages/order.php';
     include 'main.php';
+} else if (isset($_GET['page']) && $_GET['page'] == 'user') {
+    $page = 'pages/user.php';
+    include 'main.php';
 } else if (isset($_GET['page']) && $_GET['page'] == 'report') {
     $page = 'pages/report.php';
     include 'main.php';

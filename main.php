@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (empty($_SESSION['username_followup'])) {
+if (empty($_SESSION['username_thecoffe'])) {
     header('location:login');
 }
 ?>

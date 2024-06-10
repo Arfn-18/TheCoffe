@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!empty($_SESSION['username_followup'])) {
+if (!empty($_SESSION['username_thecoffe'])) {
     header('location:home');
 }
 ?>
@@ -14,7 +14,7 @@ if (!empty($_SESSION['username_followup'])) {
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>FollowUp | Login</title>
+    <title>TheCoffe | Login</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">

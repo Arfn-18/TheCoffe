@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect("localhost", "root", "", "dbfollowup");
+$con = mysqli_connect("localhost", "root", "", "dbthecoffe");
 if(!$con){
     echo "Koneksi Gagal";
 }

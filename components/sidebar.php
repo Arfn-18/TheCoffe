@@ -6,7 +6,7 @@
             </button>
             <div class="offcanvas offcanvas-start" style="width: 45%;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Follow Up</h5>
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">TheCoffe</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -27,7 +27,7 @@
                             <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'dapur') ? 'active' : '' ?>" aria-current="page" href="#"><i class="bi bi-fire"></i> Dapur</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'user') ? 'active' : '' ?>" aria-current="page" href="#"><i class="bi bi-person-vcard"></i> User</a>
+                            <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'user') ? 'active' : '' ?>" aria-current="page" href="user"><i class="bi bi-person-vcard"></i> User</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'report') ? 'active' : '' ?>" aria-current="page" href="report"><i class="bi bi-clipboard-data"></i> Report</a>
