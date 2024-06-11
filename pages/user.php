@@ -101,8 +101,11 @@ while ($data = mysqli_fetch_array($query)) {
             </div>
             <!-- End Modal Add User -->
 
+            <?php
+            foreach ($user as $row) {
+                ?>
             <!-- Modal View User-->
-            <div class="modal fade" id="viewUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="viewUser<?php echo $row['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-fullscreen-md-down">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -110,11 +113,77 @@ while ($data = mysqli_fetch_array($query)) {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                        <form class="needs-validation" novalidate action="controller/proses_user.php" method="POST">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input disabled type="text" class="form-control" id="floatingInput" placeholder="Your Name" name="nama" value="<?php echo $row['nama']?>">
+                                            <label for="floatingInput">Nama</label>
+                                            <div class="invalid-feedback">
+                                                Masukan Nama.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input disabled type="email" class="form-control" id="floatingInput" placeholder="username@example.com" name="username" value="<?php echo $row['username']?>">
+                                            <label for="floatingInput">Username</label>
+                                            <div class="invalid-feedback">
+                                                Masukan Username Email.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="password" class="form-control" id="floatingInput" placeholder="********" name="password" value="123123" disabled>
+                                            <label for="floatingPassword">Password</label>
+                                            <div class="invalid-feedback">
+                                                Masukan Password.
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                                <div class="row">
+                                    <div class="col col-md-4">
+                                        <div class="form-floating mb-3">
+                                        <input disabled type="email" class="form-control" id="floatingInput" placeholder="" name="role" value="<?php 
+                                        if ($row['level'] ==1 ){
+                                            echo "Admin";
+                                        } elseif ($row['level'] ==2 ){
+                                            echo "Kasir";
+                                        }elseif ($row['level'] ==3 ){
+                                            echo "Pelayan";
+                                        }elseif ($row['level'] ==4 ){
+                                            echo "Dapur";
+                                        }
+                                        ?>">
+                                            <label for="floatingInput">Level User</label>
+                                            <!-- <div class="invalid-feedback">
+                                                Masukan Level User.
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-8">
+                                        <div class="form-floating mb-3">
+                                            <input type="number" name="nohp" class="form-control" id="floatingPassword" placeholder="08xxxxxxx" disabled value="<?php echo $row['nohp']?>">
+                                            <label for="floatingInput">No Hp</label>
+                                            <!-- <div class="invalid-feedback">
+                                                Masukan Nomor Hp.
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <textarea disabled name="alamat" class="form-control" id="" style="height: 100px;" ><?php echo $row['alamat']?></textarea>
+                                    <label for="floatingInput">Alamat</label>
+                                    <div class="invalid-feedback">
+                                        Masukan Alamat.
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -122,6 +191,7 @@ while ($data = mysqli_fetch_array($query)) {
             <!-- End Modal View User -->
 
             <?php
+            }
             if (empty($user)) {
                 echo "Tidak ada data";
             } else {
@@ -151,7 +221,7 @@ while ($data = mysqli_fetch_array($query)) {
                                     <td><?php echo $row['nohp'] ?></td>
                                     <td>
                                         <div class="d-flex gap-1">
-                                            <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewUser"><i class="bi bi-eye"></i></button>
+                                            <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#viewUser<?php echo $row['id']?>"><i class="bi bi-eye"></i></button>
                                             <button class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
                                             <button class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>
                                         </div>
