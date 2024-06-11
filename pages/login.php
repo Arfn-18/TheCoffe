@@ -173,7 +173,7 @@ if (!empty($_SESSION['username_thecoffe'])) {
                 </label>
             </div>
             <button class="btn btn-primary w-100 py-2" name="submit_validate" type="submit" value="submit">Login</button>
-            <p class="mt-5 mb-3 text-body-secondary text-center">&copy;2024 FollowUp, All Right Reserved.</p>
+            <p class="mt-5 mb-3 text-body-secondary text-center">&copy;2024 TheCoffe, All Right Reserved.</p>
         </form>
     </main>
 
