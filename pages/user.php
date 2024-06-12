@@ -101,6 +101,9 @@ while ($data = mysqli_fetch_array($query)) {
             </div>
             <!-- End Modal Add User -->
 
+            <?php
+            foreach ($user as $row) {
+                ?>
             <!-- Modal View User-->
             <?php
             foreach ($user as $row) {
@@ -290,6 +293,7 @@ while ($data = mysqli_fetch_array($query)) {
 
 
             <?php
+            }
             }
             if (empty($user)) {
                 echo "Tidak ada data";
