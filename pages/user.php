@@ -101,9 +101,7 @@ while ($data = mysqli_fetch_array($query)) {
             </div>
             <!-- End Modal Add User -->
 
-            <?php
-            foreach ($user as $row) {
-                ?>
+
             <!-- Modal View User-->
             <?php
             foreach ($user as $row) {
@@ -120,33 +118,38 @@ while ($data = mysqli_fetch_array($query)) {
                                     <input type="text" class="form-control" id="floatingInput" name="nama" disabled value="<?php echo $row['nama']; ?>">
                                     <label for="floatingInput">Nama</label>
                                 </div>
-
                                 <div class="form-floating mb-3">
                                     <input type="email" class="form-control" id="floatingInput" name="username" disabled value="<?php echo $row['username']; ?>">
                                     <label for="floatingInput">Username</label>
                                 </div>
+                                <div class="row">
+                                    <div class="col col-md-4">
+                                        <div class="form-floating mb-3">
+                                            <select disabled class="form-select" aria-label="Defaul select example" name="level" id="">
+                                                <?php
+                                                $data = array("Admin", "Pelayan", "Kasir", "Dapur");
+                                                foreach ($data as $key => $value) {
+                                                    if ($row['level'] == $key + 1) {
+                                                        echo "<option selected value=" . ($key + 1) . ">$value</option>";
+                                                    } else {
+                                                        echo "<option value=" . ($key + 1) . ">$value</option>";
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="floatingInput">Level User</label>
+                                        </div>
+                                    </div>
+                                    <div class="col col-md-8">
+                                        <div class="form-floating mb-3">
+                                            <input type="number" name="nohp" class="form-control" id="floatingPassword" placeholder="08xxxxxxx" disabled value="<?php echo $row['nohp'] ?>">
+                                            <label for="floatingInput">No Hp</label>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="floatingInput" name="password" value="123123" disabled value="<?php echo $row['password']; ?>">
                                     <label for="floatingPassword">Password</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <select class="form-select" name="level" aria-label="Default select example" disabled>
-                                        <?php
-                                        $data_level = array("Admin", "Pelayan", "Kasir", "Dapur");
-                                        foreach ($data_level as $key => $value) {
-                                            if ($row['level'] == $key + 1) {
-                                                echo "<option value='$key' selected>$value</option>";
-                                            } else {
-                                                echo "<option value='$key'>$value</option>";
-                                            }
-                                        }
-                                        ?>
-                                    </select>
-                                    <label for="floatingInput">Level User</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="number" name="nohp" class="form-control" id="floatingPassword" disabled value="<?php echo $row['nohp']; ?>">
-                                    <label for="floatingInput">No Hp</label>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <textarea name="alamat" class="form-control" id="" style="height: 100px;" disabled><?php echo $row['alamat']; ?></textarea>
@@ -162,10 +165,6 @@ while ($data = mysqli_fetch_array($query)) {
                 <!-- End Modal View User -->
 
                 <!-- Modal Edit User-->
-            <?php
-            }
-            foreach ($user as $row) {
-            ?>
                 <div class="modal fade" id="EditUser<?php echo $row['id']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-fullscreen-md-down">
                         <div class="modal-content">
@@ -255,10 +254,6 @@ while ($data = mysqli_fetch_array($query)) {
                 <!-- End Modal Edit User -->
 
                 <!-- Modal Delete User-->
-            <?php
-            }
-            foreach ($user as $row) {
-            ?>
                 <div class="modal fade" id="DeleteUser<?php echo $row['id']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -282,7 +277,7 @@ while ($data = mysqli_fetch_array($query)) {
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" name="input_user_validate" class="btn btn-danger" <?php echo ($row['username'] == $_SESSION['username_thecoffe']) ? 'disabled' : '' ; ?>>Delete</button>
+                                        <button type="submit" name="input_user_validate" class="btn btn-danger" <?php echo ($row['username'] == $_SESSION['username_thecoffe']) ? 'disabled' : ''; ?>>Delete</button>
                                     </div>
                                 </form>
                             </div>
@@ -292,8 +287,128 @@ while ($data = mysqli_fetch_array($query)) {
                 <!-- End Modal Delete User -->
 
 
+                <!-- Modal Edit User-->
+                <div class="modal fade" id="viewEdit<?php echo $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl modal-fullscreen-md-down">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Detail User</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="needs-validation" novalidate action="controller/edit_user.php" method="POST">
+                                    <input type="hidden" value="<?php echo $row['id'] ?>" name="id">
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="floatingInput" placeholder="Your Name" name="nama" value="<?php echo $row['nama'] ?>" required>
+                                                <label for="floatingInput">Nama</label>
+                                                <div class="invalid-feedback">
+                                                    Masukan Nama.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm">
+                                            <div class="form-floating mb-3">
+                                                <input type="email" class="form-control" id="floatingInput" placeholder="username@example.com" name="username" value="<?php echo $row['username'] ?>" required>
+                                                <label for="floatingInput">Username</label>
+                                                <div class="invalid-feedback">
+                                                    Masukan Username Email.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm">
+                                            <div class="form-floating mb-3">
+                                                <input type="password" class="form-control" id="floatingInput" placeholder="********" name="password" value="123123" required>
+                                                <label for="floatingPassword">Password</label>
+                                                <div class="invalid-feedback">
+                                                    Masukan Password.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col col-md-4">
+                                            <div class="form-floating mb-3">
+                                                <select class="form-select" aria-label="Defaul select example" name="level" id="">
+                                                    <?php
+                                                    $data = array("Owner/Admin", "Kasir", "Pelayan", "Dapur");
+                                                    foreach ($data as $key => $value) {
+                                                        if ($row['level'] == $key + 1) {
+                                                            echo "<option selected value=" . ($key + 1) . ">$value</option>";
+                                                        } else {
+                                                            echo "<option value=" . ($key + 1) . ">$value</option>";
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                                <label for="floatingInput">Level User</label>
+                                                <div class="invalid-feedback">
+                                                    Masukan Level User.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-md-8">
+                                            <div class="form-floating mb-3">
+                                                <input type="number" name="nohp" class="form-control" id="floatingPassword" placeholder="08xxxxxxx" value="<?php echo $row['nohp'] ?>">
+                                                <label for="floatingInput">No Hp</label>
+                                                <div class="invalid-feedback">
+                                                    Masukan Nomor Hp.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <textarea name="alamat" class="form-control" id="" style="height: 100px;"><?php echo $row['alamat'] ?></textarea>
+                                        <label for="floatingInput">Alamat</label>
+                                        <div class="invalid-feedback">
+                                            Masukan Alamat.
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" name="input_user_validate" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Edit User -->
+
+                <!-- Modal Hapus User-->
+                <div class="modal fade" id="delete<?php echo $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-md modal-fullscreen-md-down">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Detail User</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="needs-validation" novalidate action="controller/delete_user.php" method="POST">
+                                    <input type="hidden" value="<?php echo $row['id'] ?>" name="id">
+                                    <div class="col-lg-12">
+                                        <?php
+                                        if ($row['username'] == $_SESSION['username_thecoffe']) {
+                                            echo "<div class='alert alert-danger'>Anda tidak dapat menghapus diri anda sendiri</div>";
+                                        } else {
+                                            echo "Apakah anda yakin ingin menghapus user <b>< $row[username]></b>";
+                                        }
+                                        ?>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" name="input_user_validate" class="btn btn-danger" <?php echo ($row['username'] == $_SESSION['username_thecoffe']) ? 'disabled' : ''; ?>>Hapus</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal Hapus User -->
+
             <?php
-            }
             }
             if (empty($user)) {
                 echo "Tidak ada data";
@@ -346,7 +461,7 @@ while ($data = mysqli_fetch_array($query)) {
     ?>
     </div>
 </div>
-</div>
+
 
 
 <script>
