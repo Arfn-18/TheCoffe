@@ -6,7 +6,7 @@ if (empty($_SESSION['username_thecoffe'])) {
 ?>
 
 <!doctype html>
-<html lang="en" data-bs-theme="light">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="utf-8">
