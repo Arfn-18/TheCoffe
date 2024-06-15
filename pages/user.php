@@ -6,7 +6,7 @@ while ($data = mysqli_fetch_array($query)) {
 }
 ?>
 
-<div class="konten col-lg rounded">
+<div class="konten col-lg rounded mb-5">
     <div class="card">
         <div class="card-header fw-bold">
             Halaman User
