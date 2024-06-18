@@ -1,9 +1,11 @@
 <?php
 include 'controller/connect.php';
-$query = mysqli_query($con, "SELECT * FROM tb_daftar_menu");
+$query = mysqli_query($con, "SELECT * FROM tb_daftar_menu LEFT JOIN tb_kategori_menu ON tb_kategori_menu.id = tb_daftar_menu.kategori");
 while ($data = mysqli_fetch_array($query)) {
     $daftar_menu[] = $data;
 }
+
+$select_kat_menu = mysqli_query($con, "SELECT kategori_menu FROM tb_kategori_menu");
 ?>
 
 <div class="konten col-lg rounded mb-5">
@@ -29,65 +31,73 @@ while ($data = mysqli_fetch_array($query)) {
                         <div class="modal-body">
                             <form class="needs-validation" novalidate action="controller/proses_user.php" method="POST">
                                 <div class="row">
-                                <div class="col-sm">
-                                        <div class="form-floating mb-3">
-                                            <input type="file" class="form-control " id="floatingInput" name="password" required>
-                                            <label for="floatingPassword">Foto Menu</label>
-                                            <div class="invalid-feedback">
-                                                Masukan Foto Menu<.
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-sm">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingInput" placeholder="Your Name" name="nama" required>
-                                            <label for="floatingInput">Nama Menu</label>
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="uploadFoto">Foto Menu</label>
+                                            <input type="file" class="form-control py-3 ps-4" id="uploadFoto" name="foto" required>
                                             <div class="invalid-feedback">
-                                                Masukan Nama Menu.
+                                                Masukan Foto Menu<. </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="floatingInput" placeholder="Your Name" name="nama_menu" required>
+                                                <label for="floatingInput">Nama Menu</label>
+                                                <div class="invalid-feedback">
+                                                    Masukan Nama Menu.
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingInput" placeholder="username@example.com" name="username" required>
-                                            <label for="floatingInput">Kategori Menu</label>
-                                            <div class="invalid-feedback">
-                                                Masukan Kategori Menu.
-                                            </div>
-                                        </div>
-                                    </div>                                    
-                                </div>
-                                <div class="row">
-                                    <div class="col col-md-4">
-                                        <div class="form-floating mb-3">
-                                            <input type="number" class="form-control" id="floatingInput" placeholder="999" name="stok" required>
-                                            <label for="floatingInput">Stok Menu</label>
-                                            <div class="invalid-feedback">
-                                                Masukan Stok Menu.
-                                            </div>
+                                    <div class="form-floating mb-3">
+                                        <textarea name="alamat" class="form-control" id="" style="height: 100px;"></textarea>
+                                        <label for="floatingInput">Keterangan</label>
+                                        <div class="invalid-feedback">
+                                            Masukan Keterangan.
                                         </div>
                                     </div>
-                                    <div class="col col-md-8">
-                                        <div class="form-floating mb-3">
-                                            <input type="number" name="nohp" class="form-control" id="floatingInput" placeholder="50000" required>
-                                            <label for="floatingInput">Harga Menu</label>
-                                            <div class="invalid-feedback">
-                                                Masukan Harga Menu.
+                                    <div class="row">
+                                        <div class="col col-md-4">
+                                            <div class="form-floating mb-3">
+                                                <select class="form-select" name="kat_menu" aria-label="Default select example" required>
+                                                    <option value="" hidden selected>Pilih Kategori Menu</option>
+                                                    <?php
+                                                    foreach ($select_kat_menu as $row) {
+                                                        echo '<option value="' . $row['id'] . '">' . $row['kategori_menu'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                                <label for="floatingInput">Kategori Makanan atau Minuman</label>
+                                                <div class="invalid-feedback">
+                                                    Pilih Kategori Menu.
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="col col-md-4">
+                                            <div class="form-floating mb-3">
+                                                <input type="number" name="harga_menu" class="form-control" id="floatingInput" placeholder="50000" required>
+                                                <label for="floatingInput">Harga Menu</label>
+                                                <div class="invalid-feedback">
+                                                    Masukan Harga Menu.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-md-4">
+                                            <div class="form-floating mb-3">
+                                                <input type="number" class="form-control" id="floatingInput" placeholder="999" name="stok_menu" required>
+                                                <label for="floatingInput">Stok Menu</label>
+                                                <div class="invalid-feedback">
+                                                    Masukan Stok Menu.
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <textarea name="alamat" class="form-control" id="" style="height: 100px;" required></textarea>
-                                    <label for="floatingInput">Keterangan</label>
-                                    <div class="invalid-feedback">
-                                        Masukan Alamat.
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" name="input_user_validate" class="btn btn-primary">Save changes</button>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" name="input_user_validate" class="btn btn-primary">Save changes</button>
-                                </div>
                             </form>
                         </div>
                     </div>
@@ -115,10 +125,10 @@ while ($data = mysqli_fetch_array($query)) {
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="floatingInput" name="kategori_menu" disabled value="<?php echo $row['kategori_menu']; ?>">
                                     <label for="floatingInput">Kategori</label>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col col-md-4">
-                                            <div class="form-floating mb-3">
+                                </div>
+                                <div class="row">
+                                    <div class="col col-md-4">
+                                        <div class="form-floating mb-3">
                                             <input type="text" class="form-control" id="floatingInput" name="username" disabled value="<?php echo $row['stok_menu']; ?>">
                                             <label for="floatingInput">Stok Menu</label>
                                         </div>
@@ -190,8 +200,8 @@ while ($data = mysqli_fetch_array($query)) {
                                     <div class="row">
                                         <div class="col col-md-4">
                                             <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingInput" name="stok_menu" value="<?php echo $row['stok_menu']; ?>">
-                                            <label for="floatingInput">Stok Menu</label>
+                                                <input type="text" class="form-control" id="floatingInput" name="stok_menu" value="<?php echo $row['stok_menu']; ?>">
+                                                <label for="floatingInput">Stok Menu</label>
                                                 <div class="invalid-feedback">
                                                     Masukan Stok Menu.
                                                 </div>
@@ -338,6 +348,7 @@ while ($data = mysqli_fetch_array($query)) {
                                 <th scope="col">Nama Menu</th>
                                 <th scope="col">Harga</th>
                                 <th scope="col">kategori</th>
+                                <th scope="col">Jenis Menu</th>
                                 <th scope="col">Stok</th>
                                 <th scope="col">Keterangan</th>
                                 <th scope="col">Action</th>
@@ -358,20 +369,23 @@ while ($data = mysqli_fetch_array($query)) {
                                     <td><?php echo $row['nama_menu'] ?></td>
                                     <td>Rp.<?php echo $row['harga_menu'] ?></td>
                                     <td><?php echo $row['kategori_menu'] ?></td>
+                                    <td><?= ($row['jenis_menu'] == 1) ? 'Makanan' : 'Minuman' ?></td>
                                     <td><?php echo $row['stok_menu'] ?></td>
                                     <td><?php echo $row['keterangan_menu'] ?></td>
                                     <td>
-                                    <div class="d-flex gap-1">
+                                        <div class="d-flex gap-1">
                                             <button class="btn btn-info btn-sm" title="Detail" data-bs-toggle="modal" data-bs-target="#viewUser<?php echo $row['id']; ?>"><i class="bi bi-exclamation-circle"></i></button>
                                             <div class="btn-group">
                                                 <a href"#" class="btn btn-secondary btn-sm rounded" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="bi bi-three-dots-vertical"></i>
+                                                    <i class="bi bi-three-dots-vertical"></i>
                                                 </a>
                                                 <ul class="dropdown-menu">
                                                     <!-- <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewUser<?php echo $row['id']; ?>"><i class="bi bi-exclamation-circle text-success"></i> Detail</a></li> -->
                                                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#EditUser<?php echo $row['id']; ?>"><i class="bi bi-pencil-square text-warning"></i> Edit</a></li>
                                                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#DeleteUser<?php echo $row['id']; ?>"><i class="bi bi-trash3 text-danger"></i> Delete</a></li>
-                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
                                                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#resetPasswordUser<?php echo $row['id']; ?>"><i class="bi bi-unlock text-info"></i> Reset Password</a></li>
                                                 </ul>
                                             </div>
