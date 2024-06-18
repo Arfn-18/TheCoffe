@@ -5,7 +5,7 @@ while ($data = mysqli_fetch_array($query)) {
     $daftar_menu[] = $data;
 }
 
-$select_kat_menu = mysqli_query($con, "SELECT kategori_menu FROM tb_kategori_menu");
+$select_kat_menu = mysqli_query($con, "SELECT id,kategori_menu FROM tb_kategori_menu");
 ?>
 
 <div class="konten col-lg rounded mb-5">
@@ -29,7 +29,7 @@ $select_kat_menu = mysqli_query($con, "SELECT kategori_menu FROM tb_kategori_men
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="needs-validation" novalidate action="controller/proses_user.php" method="POST">
+                            <form class="needs-validation" novalidate action="controller/proses_input_menu.php" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-sm">
                                         <div class="input-group mb-3">
@@ -50,7 +50,7 @@ $select_kat_menu = mysqli_query($con, "SELECT kategori_menu FROM tb_kategori_men
                                         </div>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <textarea name="alamat" class="form-control" id="" style="height: 100px;"></textarea>
+                                        <textarea name="keterangan" class="form-control" id="" style="height: 100px;"></textarea>
                                         <label for="floatingInput">Keterangan</label>
                                         <div class="invalid-feedback">
                                             Masukan Keterangan.
@@ -62,8 +62,8 @@ $select_kat_menu = mysqli_query($con, "SELECT kategori_menu FROM tb_kategori_men
                                                 <select class="form-select" name="kat_menu" aria-label="Default select example" required>
                                                     <option value="" hidden selected>Pilih Kategori Menu</option>
                                                     <?php
-                                                    foreach ($select_kat_menu as $row) {
-                                                        echo '<option value="' . $row['id'] . '">' . $row['kategori_menu'] . '</option>';
+                                                    foreach ($select_kat_menu as $valueKat) {
+                                                        echo '<option value="'.$valueKat['id'].'">' . $valueKat['kategori_menu'] . '</option>';
                                                     }
                                                     ?>
                                                 </select>
@@ -91,12 +91,10 @@ $select_kat_menu = mysqli_query($con, "SELECT kategori_menu FROM tb_kategori_men
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" name="input_user_validate" class="btn btn-primary">Save changes</button>
+                                        <button type="submit" name="input_menu_validate" class="btn btn-primary">Save changes</button>
                                     </div>
                             </form>
                         </div>
