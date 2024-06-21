@@ -8,7 +8,7 @@ $level = (isset($_POST['level'])) ? htmlentities($_POST['level']) : "";
 $alamat = (isset($_POST['alamat'])) ? htmlentities($_POST['alamat']) : "";
 
 if (!empty(isset($_POST['input_user_validate']))) {
-    $select = mysqli_query($con, "SELECT * FROM tb_user WHERE username = '$username'");
+    $select = mysqli_query($con, "SELECT * FROM tb_user WHERE username = '$username' AND id != '$id'");
     if (mysqli_num_rows($select) > 0) {
         $massage = '
         <script>
