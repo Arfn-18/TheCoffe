@@ -1,11 +1,11 @@
 <?php
 include 'controller/connect.php';
-$query = mysqli_query($con, "SELECT * FROM tb_daftar_menu LEFT JOIN tb_kategori_menu ON tb_kategori_menu.id = tb_daftar_menu.kategori");
+$query = mysqli_query($con, "SELECT * FROM tb_daftar_menu LEFT JOIN tb_kategori_menu ON tb_kategori_menu.id_kat = tb_daftar_menu.kategori");
 while ($data = mysqli_fetch_array($query)) {
     $daftar_menu[] = $data;
 }
 
-$select_kat_menu = mysqli_query($con, "SELECT id,kategori_menu FROM tb_kategori_menu");
+$select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kategori_menu");
 ?>
 
 <div class="konten col-lg rounded mb-5">
@@ -63,7 +63,7 @@ $select_kat_menu = mysqli_query($con, "SELECT id,kategori_menu FROM tb_kategori_
                                                     <option value="" hidden selected>Pilih Kategori Menu</option>
                                                     <?php
                                                     foreach ($select_kat_menu as $valueKat) {
-                                                        echo '<option value="'.$valueKat['id'].'">' . $valueKat['kategori_menu'] . '</option>';
+                                                        echo '<option value="'.$valueKat['id_kat'].'">' . $valueKat['kategori_menu'] . '</option>';
                                                     }
                                                     ?>
                                                 </select>
@@ -361,7 +361,7 @@ $select_kat_menu = mysqli_query($con, "SELECT id,kategori_menu FROM tb_kategori_
                                     <th scope="row"><?php echo $no++ ?></th>
                                     <td>
                                         <div style="width: 76px;">
-                                            <img src="src/img/<?php echo $row['foto_menu'] ?>.png" class="img-thumbnail" alt="...">
+                                            <img src="src/img/<?php echo $row['foto_menu'] ?>" class="img-thumbnail" alt="...">
                                         </div>
                                     </td>
                                     <td><?php echo $row['nama_menu'] ?></td>
