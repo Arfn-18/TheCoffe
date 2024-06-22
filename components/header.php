@@ -6,7 +6,7 @@ $row = mysqli_fetch_array($query);
 
 <nav class="navbar navbar-expand bg-primary sticky-top">
     <div class="container-lg">
-        <a class="navbar-brand" href="dashboard"><i class="bi bi-cup-hot-fill"></i> TheCoffe</a>
+            <a class="navbar-brand" href="dashboard"><img src="src/img/logo3.png" alt="" width="100"></a>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">

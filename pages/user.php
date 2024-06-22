@@ -250,13 +250,14 @@ while ($data = mysqli_fetch_array($query)) {
                             <div class="modal-body">
                                 <form class="needs-validation" novalidate action="controller/proses_delete_user.php" method="POST">
                                     <input type="hidden" name="id" value="<?= $row['id']; ?>">
+                                    <input type="hidden" name="nama" value="<?= $row['nama']; ?>">
                                     <div class="col-lg-12 mb-3">
                                         <?php
                                         if ($row['username'] == $_SESSION['username_thecoffe']) {
                                             echo '<div class="alert alert-danger" role="alert">Anda tidak dapat menghapus user yang sedang login</div>';
                                         } else {
                                         ?>
-                                            Apakah anda yakin ingin menghapus user <b><?= $row['username']; ?></b> ?
+                                            <div class="alert alert-light" role="alert">Apakah anda yakin ingin menghapus user <b><?= $row['username']; ?></b> ?</div>
                                         <?php
                                         }
                                         ?>

@@ -17,18 +17,17 @@ if (!empty(isset($_POST['input_user_validate']))) {
         </script>
         ';
     } else {
-    $query = mysqli_query($con, "UPDATE tb_user SET nama = '$name', username = '$username', level = '$level', nohp = '$nohp', alamat = '$alamat' WHERE id = '$id'");
-    if ($query) {
-    $massage = '<script>window.location = "../user"; alert("Data Berhasil Diedit");</script>';
-    } else {
-        $massage = '
+        $query = mysqli_query($con, "UPDATE tb_user SET nama = '$name', username = '$username', level = '$level', nohp = '$nohp', alamat = '$alamat' WHERE id = '$id'");
+        if ($query) {
+            $massage = '<script>window.location = "../user"; alert("Data Berhasil Diedit");</script>';
+        } else {
+            $massage = '
         <script>
         window.location = "../user";
         alert("Data Gagal Diedit");
         </scrip>
         ';
+        }
     }
 }
-}
 echo $massage;
-?>

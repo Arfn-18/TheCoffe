@@ -1,11 +1,12 @@
 <?php
 include "connect.php";
+$id = (isset($_POST['id'])) ? htmlentities($_POST['id']) : "";
 $nama_menu = (isset($_POST['nama_menu'])) ? htmlentities($_POST['nama_menu']) : "";
-$keterangan = (isset($_POST['keterangan'])) ? htmlentities($_POST['keterangan']) : "";
+$keterangan = (isset($_POST['keterangan_menu'])) ? htmlentities($_POST['keterangan_menu']) : "";
 $kat_menu = (isset($_POST['kat_menu'])) ? htmlentities($_POST['kat_menu']) : "";
 $harga_menu = (isset($_POST['harga_menu'])) ? htmlentities($_POST['harga_menu']) : "";
 $stok_menu = (isset($_POST['stok_menu'])) ? htmlentities($_POST['stok_menu']) : "";
-
+// $alamat = (isset($_POST['alamat'])) ? htmlentities($_POST['alamat']) : "";
 
 $kode_rand = rand(10000, 99999) . "-";
 $target_dir = "../src/img/" . $kode_rand;
@@ -39,16 +40,16 @@ if (!empty(isset($_POST['input_menu_validate']))) {
     if ($statusUpload == 0) {
         $message = '<script>window.location = "../menu"; alert("' . $message . ', Gagal upload gambar");</script>';
     } else {
-        $select = mysqli_query($con, "SELECT * FROM tb_daftar_menu WHERE nama_menu = '$nama_menu'");
+        $select = mysqli_query($con, "SELECT * FROM tb_daftar_menu WHERE nama_menu = '$nama_menu' AND id != '$id'");
         if (mysqli_num_rows($select) > 0) {
             $message = '<script>window.location = "../menu"; alert("Nama Menu yang dimasukan sudah terdaftar");</script>';
         } else {
             if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
-                $query = mysqli_query($con, "INSERT INTO tb_daftar_menu (foto_menu, nama_menu, keterangan_menu, kategori, harga_menu, stok_menu) VALUES ('" . $kode_rand . $_FILES["foto"]["name"] . "', '$nama_menu', '$keterangan', '$kat_menu', '$harga_menu', '$stok_menu')");
+                $query = mysqli_query($con, "UPDATE tb_daftar_menu SET foto_menu = '" . $kode_rand . $_FILES["foto"]["name"] . "', nama_menu = '$nama_menu', keterangan_menu = '$keterangan', kategori = '$kat_menu', harga_menu = '$harga_menu', stok_menu = '$stok_menu' WHERE id = '$id'");
                 if ($query) {
-                    $message = '<script>window.location = "../menu"; alert("Berhasil Menambahkan Menu");</script>';
+                    $message = '<script>window.location = "../menu"; alert("Berhasil Update Menu");</script>';
                 } else {
-                    $message = '<script>window.location = "../menu"; alert("Gagal Menambahkan Menu");</script>';
+                    $message = '<script>window.location = "../menu"; alert("Gagal Update Menu");</script>';
                 }
             } else {
                 $message = '<script>window.location = "../menu"; alert("Gagal upload gambar");</script>';
@@ -57,4 +58,3 @@ if (!empty(isset($_POST['input_menu_validate']))) {
     }
 }
 echo $message;
-?>

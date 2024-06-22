@@ -101,7 +101,7 @@ $select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kateg
                     </div>
                 </div>
             </div>
-            <!-- End Modal Add User -->
+            <!-- End Modal Add Menu -->
 
 
             <!-- Modal View Menu-->
@@ -169,7 +169,8 @@ $select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kateg
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form class="needs-validation" novalidate action="controller/proses_edit_menu.php" method="POST">
+                                <form class="needs-validation" novalidate action="controller/proses_edit_menu.php" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="id" value="<?= $row['id']; ?>">
                                     <div class="row">
                                         <div class="col-sm">
                                             <div class="input-group mb-3">
@@ -238,7 +239,7 @@ $select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kateg
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" name="input_user_validate" class="btn btn-primary">Save changes</button>
+                                            <button type="submit" name="input_menu_validate" class="btn btn-primary">Save changes</button>
                                         </div>
                                 </form>
                             </div>
@@ -252,26 +253,19 @@ $select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kateg
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete User</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Menu</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form class="needs-validation" novalidate action="controller/proses_delete_user.php" method="POST">
+                                <form class="needs-validation" novalidate action="controller/proses_delete_menu.php" method="POST">
                                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                    <input type="hidden" name="nama_menu" value="<?php echo $row['nama_menu']; ?>">
                                     <div class="col-lg-12 mb-3">
-                                        <?php
-                                        if ($row['username'] == $_SESSION['username_thecoffe']) {
-                                            echo '<div class="alert alert-danger" role="alert">Anda tidak dapat menghapus user yang sedang login</div>';
-                                        } else {
-                                        ?>
-                                            Apakah anda yakin ingin menghapus Menu <b><?php echo $row['username']; ?></b> ?
-                                        <?php
-                                        }
-                                        ?>
+                                        <div class="alert alert-light" role="alert">Apakah anda yakin ingin menghapus menu <b><?= $row['nama_menu']; ?></b> ?</div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" name="input_menu_validate" class="btn btn-danger" <?php echo ($row['username'] == $_SESSION['username_thecoffe']) ? 'disabled' : ''; ?>>Delete</button>
+                                        <button type="submit" name="input_menu_validate" class="btn btn-danger">Delete</button>
                                     </div>
                                 </form>
                             </div>
