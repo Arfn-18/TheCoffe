@@ -13,7 +13,7 @@ if (!empty(isset($_POST['input_user_validate']))) {
         $massage = '
         <script>
         window.location = "../user";
-        alert("Username sudah terdaftar");
+        alert("Username '. $username .' sudah terdaftar");
         </script>
         ';
     } else {
@@ -22,7 +22,7 @@ if (!empty(isset($_POST['input_user_validate']))) {
             $massage = '
         <script>
         window.location = "../user";
-        alert("Berhasil insert data");
+        alert("Berhasil Menambahkan '. $username .'");
         </script>
         ';
         } else {

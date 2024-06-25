@@ -9,7 +9,7 @@ while ($data = mysqli_fetch_array($query)) {
 <div class="konten col-lg rounded mb-5">
     <div class="card">
         <div class="card-header fw-bold">
-            Halaman User
+            Halaman User | TheCoffe
         </div>
         <div class="card-body">
             <div class="row">
@@ -27,7 +27,7 @@ while ($data = mysqli_fetch_array($query)) {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="needs-validation" novalidate action="controller/proses_user.php" method="POST">
+                            <form class="needs-validation" novalidate action="controller/proses_input_user.php" method="POST">
                                 <div class="row">
                                     <div class="col-sm">
                                         <div class="form-floating mb-3">

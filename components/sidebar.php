@@ -18,7 +18,7 @@
                             <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'menu') ? 'active' : '' ?>" aria-current="page" href="menu"><i class="bi bi-grid"></i> Daftar Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'category') ? 'active' : '' ?>" aria-current="page" href="#"><i class="bi bi-tags"></i> Kategori Menu</a>
+                            <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'kategori') ? 'active' : '' ?>" aria-current="page" href="kategori"><i class="bi bi-tags"></i> Kategori Menu</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'order') ? 'active' : '' ?>" aria-current="page" href="order"><i class="bi bi-bag-dash"></i> Order</a>
