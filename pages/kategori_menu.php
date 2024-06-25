@@ -74,8 +74,8 @@ while ($data = mysqli_fetch_array($query)) {
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form class="needs-validation" novalidate action="controller/proses_edit_user.php" method="POST">
-                                    <input type="hidden" name="id" value="<?= $row['id_kat']; ?>">
+                                <form class="needs-validation" novalidate action="controller/proses_edit_kat_menu.php" method="POST">
+                                    <input type="hidden" name="id_kat" value="<?= $row['id_kat']; ?>">
                                     <div class="row">
                                         <div class="col-sm">
                                             <div class="form-floating mb-3">
@@ -86,21 +86,21 @@ while ($data = mysqli_fetch_array($query)) {
                                                 </div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <select class="form-select" name="kat_menu" aria-label="Default select example" required>
-                                                    <option value="" hidden selected>Pilih Kategori Menu</option>
+                                                <select class="form-select" name="jenis_menu" aria-label="Default select example" required>
                                                     <?php
-                                                    foreach ($kategori as $valueKat) {
-                                                        if ($row['id_kat'] == $valueKat['id_kat']) {
-                                                            echo '<option value="' . $valueKat['id_kat'] . '" selected>' . ($valueKat['jenis_menu'] == 1) ? 'Makanan' : 'Minuman' . '</option>';
+                                                    $data_jenis = array("Makanan", "Minuman");
+                                                    foreach ($data_jenis as $key => $value) {
+                                                        if ($row['jenis_menu'] == $key + 1) {
+                                                            echo "<option value=" . ($key + 1) . " selected>$value</option>";
                                                         } else {
-                                                            echo '<option value="' . $valueKat['id_kat'] . '">' . ($valueKat['jenis_menu'] == 1) ? 'Makanan' : 'Minuman' . '</option>';
+                                                            echo "<option value=" . ($key + 1) . ">$value</option>";
                                                         }
                                                     }
                                                     ?>
                                                 </select>
                                                 <label for="floatingInput">Jenis Menu</label>
                                                 <div class="invalid-feedback">
-                                                    Masukan Level User.
+                                                    Masukan Jenis User.
                                                 </div>
                                             </div>
                                         </div>
@@ -125,15 +125,15 @@ while ($data = mysqli_fetch_array($query)) {
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form class="needs-validation" novalidate action="controller/proses_delete_user.php" method="POST">
-                                    <input type="hidden" name="id" value="<?= $row['id_kat']; ?>">
+                                <form class="needs-validation" novalidate action="controller/proses_delete_kat_menu.php" method="POST">
+                                    <input type="hidden" name="id_kat" value="<?= $row['id_kat']; ?>">
                                     <input type="hidden" name="kategori_menu" value="<?= $row['kategori_menu']; ?>">
                                     <div class="col-lg-12 mb-3">
                                         <div class="alert alert-light" role="alert">Apakah anda yakin ingin menghapus Kategori <b><?= $row['kategori_menu']; ?></b> ?</div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" name="input_user_validate" class="btn btn-danger">Delete</button>
+                                        <button type="submit" name="input_kategori_validate" class="btn btn-danger">Delete</button>
                                     </div>
                                 </form>
                             </div>
