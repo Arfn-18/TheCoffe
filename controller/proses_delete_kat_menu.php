@@ -7,11 +7,7 @@ $kat_menu = (isset($_POST['kategori_menu'])) ? htmlentities($_POST['kategori_men
 if (!empty(isset($_POST['input_kategori_validate']))) {
     $select = mysqli_query($con, "SELECT kategori FROM tb_daftar_menu WHERE kategori = '$id_kat'");
     if (mysqli_num_rows($select) > 0) {
-        $massage = '
-        <script>
-        window.location = "../kategori";
-        alert("Kategori Menu ' . $kat_menu . ' sudah digunakan di Daftar Menu");
-        </script>
+        $massage = '<script>window.location = "../kategori"; alert("Kategori Menu ' . $kat_menu . ' sudah digunakan di Daftar Menu");</script>
         ';
     } else {
 
@@ -19,11 +15,7 @@ if (!empty(isset($_POST['input_kategori_validate']))) {
         if ($query) {
             $massage = '<script>window.location = "../kategori"; alert("Data Kategori Menu ' . $kat_menu . ' Berhasil Dihapus");</script>';
         } else {
-            $massage = '
-            <script>
-            window.location = "../kategori";
-            alert("Data Gagal Dihapus");
-            </scrip>
+            $massage = '<script>window.location = "../kategori"; alert("Data Gagal Dihapus");</scrip>
             ';
         }
     }
