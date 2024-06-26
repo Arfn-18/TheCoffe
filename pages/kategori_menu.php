@@ -151,7 +151,7 @@ while ($data = mysqli_fetch_array($query)) {
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
                         <thead>
-                            <tr>
+                            <tr class="text-nowrap">
                                 <th scope="col">No</th>
                                 <th scope="col">Kategori Menu</th>
                                 <th scope="col">Jenis Menu</th>
@@ -165,8 +165,8 @@ while ($data = mysqli_fetch_array($query)) {
                             ?>
                                 <tr class="align-middle">
                                     <th scope="row"><?php echo $no++ ?></th>
-                                    <td><?php echo $row['kategori_menu'] ?></td>
-                                    <td><?= ($row['jenis_menu'] == 1) ? 'Makanan' : 'Minuman' ?></td>
+                                    <td class="text-nowrap"><?php echo $row['kategori_menu'] ?></td>
+                                    <td class="text-nowrap"><?= ($row['jenis_menu'] == 1) ? 'Makanan' : 'Minuman' ?></td>
                                     <td>
                                         <div class="d-flex gap-1">
                                             <button class="btn btn-warning btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#EditKategori<?php echo $row['id_kat']; ?>"><i class="bi bi-pencil-square"></i></button>

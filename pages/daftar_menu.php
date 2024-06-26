@@ -36,66 +36,66 @@ $select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kateg
                                             <label class="input-group-text" for="uploadFoto">Foto Menu</label>
                                             <input type="file" class="form-control py-3 ps-4" id="uploadFoto" name="foto" required>
                                             <div class="invalid-feedback">
-                                                Masukan Foto Menu<. </div>
-                                            </div>
+                                                Masukan Foto Menu. </div>
                                         </div>
-                                        <div class="col-sm">
-                                            <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" id="floatingInput" placeholder="Your Name" name="nama_menu" required>
-                                                <label for="floatingInput">Nama Menu</label>
-                                                <div class="invalid-feedback">
-                                                    Masukan Nama Menu.
-                                                </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="floatingInput" placeholder="Your Name" name="nama_menu" required>
+                                            <label for="floatingInput">Nama Menu</label>
+                                            <div class="invalid-feedback">
+                                                Masukan Nama Menu.
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <textarea name="keterangan" class="form-control" id="" style="height: 100px;"></textarea>
-                                        <label for="floatingInput">Keterangan</label>
-                                        <div class="invalid-feedback">
-                                            Masukan Keterangan.
-                                        </div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <textarea name="keterangan" class="form-control" id="" style="height: 100px;"></textarea>
+                                    <label for="floatingInput">Keterangan</label>
+                                    <div class="invalid-feedback">
+                                        Masukan Keterangan.
                                     </div>
-                                    <div class="row">
-                                        <div class="col col-md-4">
-                                            <div class="form-floating mb-3">
-                                                <select class="form-select" name="kat_menu" aria-label="Default select example" required>
-                                                    <option value="" hidden selected>Pilih Kategori Menu</option>
-                                                    <?php
-                                                    foreach ($select_kat_menu as $valueKat) {
-                                                        echo '<option value="' . $valueKat['id_kat'] . '">' . $valueKat['kategori_menu'] . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                                <label for="floatingInput">Kategori Makanan atau Minuman</label>
-                                                <div class="invalid-feedback">
-                                                    Pilih Kategori Menu.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col col-md-4">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" name="harga_menu" class="form-control" id="floatingInput" placeholder="50000" required>
-                                                <label for="floatingInput">Harga Menu</label>
-                                                <div class="invalid-feedback">
-                                                    Masukan Harga Menu.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col col-md-4">
-                                            <div class="form-floating mb-3">
-                                                <input type="number" class="form-control" id="floatingInput" placeholder="999" name="stok_menu" required>
-                                                <label for="floatingInput">Stok Menu</label>
-                                                <div class="invalid-feedback">
-                                                    Masukan Stok Menu.
-                                                </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-md-4">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-select" name="kat_menu" aria-label="Default select example" required>
+                                                <option value="" hidden selected>Pilih Kategori Menu</option>
+                                                <?php
+                                                foreach ($select_kat_menu as $valueKat) {
+                                                    echo '<option value="' . $valueKat['id_kat'] . '">' . $valueKat['kategori_menu'] . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="floatingInput">Kategori</label>
+                                            <div class="invalid-feedback">
+                                                Pilih Kategori Menu.
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" name="input_menu_validate" class="btn btn-primary">Save changes</button>
+                                    <div class="col col-md-4">
+                                        <div class="form-floating mb-3">
+                                            <input type="number" name="harga_menu" class="form-control" id="floatingInput" placeholder="50000" required>
+                                            <label for="floatingInput">Harga Menu</label>
+                                            <div class="invalid-feedback">
+                                                Masukan Harga Menu.
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div class="col col-md-4">
+                                        <div class="form-floating mb-3">
+                                            <input type="number" class="form-control" id="floatingInput" placeholder="999" name="stok_menu" required>
+                                            <label for="floatingInput">Stok Menu</label>
+                                            <div class="invalid-feedback">
+                                                Masukan Stok Menu.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" name="input_menu_validate" class="btn btn-primary">Save changes</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -143,7 +143,7 @@ $select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kateg
                                                 </div>
                                                 <div class="col col-md-8">
                                                     <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="floatingPassword" disabled value="Rp.<?= $row['harga_menu'] ?>">
+                                                        <input type="text" class="form-control" id="floatingPassword" disabled value="Rp.<?= number_format($row['harga_menu'], 0, ',', '.') ?>">
                                                         <label for="floatingInput">Harga Menu</label>
                                                     </div>
                                                 </div>
@@ -280,10 +280,9 @@ $select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kateg
 
                 <?php
                 }
-
                 ?>
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover table-sm">
                         <thead>
                             <tr class="text-nowrap">
                                 <th scope="col">No</th>
@@ -311,11 +310,11 @@ $select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kateg
                                             </div>
                                         </a>
                                     </td>
-                                    <td><?= $row['nama_menu'] ?></td>
-                                    <td>Rp.<?= $row['harga_menu'] ?></td>
-                                    <td><?= $row['kategori_menu'] ?></td>
-                                    <td><?= ($row['jenis_menu'] == 1) ? 'Makanan' : 'Minuman' ?></td>
-                                    <td><?= $row['stok_menu'] ?></td>
+                                    <td class="text-nowrap"><?= $row['nama_menu'] ?></td>
+                                    <td class="text-nowrap">Rp.<?= number_format($row['harga_menu'], 0, ',', '.') ?></td>
+                                    <td class="text-nowrap"><?= $row['kategori_menu'] ?></td>
+                                    <td class="text-nowrap"><?= ($row['jenis_menu'] == 1) ? 'Makanan' : 'Minuman' ?></td>
+                                    <td class="text-nowrap"><?= number_format($row['stok_menu'], 0, ',', '.') ?></td>
                                     <td><?= $row['keterangan_menu'] ?></td>
                                     <td>
                                         <div class="d-flex gap-1">
