@@ -12,7 +12,7 @@ if (isset($_GET['page']) && $_GET['page'] == 'dashboard') {
 } else if (isset($_GET['page']) && $_GET['page'] == 'order') {
     $page = 'pages/order.php';
     include 'main.php';
-} else if (isset($_GET['page']) && $_GET['page'] == 'orderitem') {
+} else if (isset($_GET['page']) && $_GET['page'] == 'order_item') {
     $page = 'pages/order_item.php';
     include 'main.php';
 } else if (isset($_GET['page']) && $_GET['page'] == 'user') {
