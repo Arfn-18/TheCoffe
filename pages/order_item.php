@@ -3,10 +3,10 @@ include 'controller/connect.php';
 // echo $_GET['order'];
 
 $query = mysqli_query($con, "SELECT *, SUM(harga_menu*jumlah) AS total_harga FROM tb_list_order 
-        LEFT JOIN tb_order ON tb_order.id_order = tb_list_order.order
+        LEFT JOIN tb_order ON tb_order.id_order = tb_list_order.kode_order
         LEFT JOIN tb_daftar_menu ON tb_daftar_menu.id = tb_list_order.menu
         GROUP BY id_list_order
-        HAVING tb_list_order.order = $_GET[order]");
+        HAVING tb_list_order.kode_order = $_GET[order]");
 
 $kode_order = $_GET['order'];
 $meja = $_GET['meja'];
@@ -90,7 +90,7 @@ $select_daftar_menu = mysqli_query($con, "SELECT id,nama_menu FROM tb_daftar_men
                                             <input type="number" class="form-control" id="floatingInput" placeholder="" name="jumlah" required>
                                             <label for="floatingInput">Jumlah Porsi</label>
                                             <div class="invalid-feedback">
-                                                Masukan Nama Menu.
+                                                Masukan Jumlah Porsi.
                                             </div>
                                         </div>
                                     </div>
@@ -296,10 +296,11 @@ $select_daftar_menu = mysqli_query($con, "SELECT id,nama_menu FROM tb_daftar_men
                         <thead>
                             <tr class="text-nowrap">
                                 <th scope="col">No</th>
-                                <th scope="col">Menu</th>
-                                <th scope="col">Harga</th>
+                                <th scope="col">Nama Menu</th>
+                                <th scope="col">Harga Satuan</th>
                                 <th scope="col">Qty</th>
                                 <th scope="col">Total Harga</th>
+                                <th scope="col">Catatan</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -311,25 +312,15 @@ $select_daftar_menu = mysqli_query($con, "SELECT id,nama_menu FROM tb_daftar_men
                             ?>
                                 <tr class="align-middle">
                                     <th scope="row"><?= $no++ ?></th>
-                                    <td><?= $row['nama_menu'] ?></td>
+                                    <td class="text-nowrap"><?= $row['nama_menu'] ?></td>
                                     <td>Rp.<?= number_format($row['harga_menu'], 0, ',', '.') ?></td>
                                     <td><?= $row['jumlah'] ?></td>
                                     <td>Rp.<?= number_format($row['total_harga'], 0, ',', '.') ?></td>
+                                    <td>Pedas</td>
                                     <td>
                                         <div class="d-flex gap-1">
-                                            <button class="btn btn-info btn-sm" title="Detail" data-bs-toggle="modal" data-bs-target="#viewUser<?= $row['id_order']; ?>"><i class="bi bi-exclamation-circle"></i></button>
-                                            <div class="btn-group">
-                                                <a href"#" class="btn btn-secondary btn-sm rounded" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="bi bi-three-dots-vertical"></i>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#EditUser<?= $row['id']; ?>"><i class="bi bi-pencil-square text-warning"></i> Edit</a></li>
-                                                    <li>
-                                                        <hr class="dropdown-divider">
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#DeleteUser<?= $row['id']; ?>"><i class="bi bi-trash3 text-danger"></i> Delete</a></li>
-                                                </ul>
-                                            </div>
+                                            <button class="btn btn-warning btn-sm" title="Detail" data-bs-toggle="modal" data-bs-target="#editItem<?= $row['id_order']; ?>"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="btn btn-danger btn-sm" title="Detail" data-bs-toggle="modal" data-bs-target="#deleteItem<?= $row['id_order']; ?>"><i class="bi bi-trash3"></i></button>
                                         </div>
                                     </td>
                                 </tr>
