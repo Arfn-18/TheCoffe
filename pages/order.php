@@ -190,7 +190,7 @@ while ($data = mysqli_fetch_array($query)) {
                                         </a>
                                     </td>
                                     <td><?= $row['meja'] ?></td>
-                                    <td>Rp.<?= number_format($row['total_harga'], 0, ',', '.') ?></td>
+                                    <td>Rp.<?= $row['total_harga'] !== null ? number_format($row['total_harga'], 0, ',', '.') : '0' ?></td>
                                     <td class="text-nowrap">
                                         <?php if ($row['level'] == 1) echo  "Admin" . " | " . $row['nama'];
                                         elseif ($row['level'] == 2) echo "Pelayan" . " | " . $row['nama'];
