@@ -1,11 +1,12 @@
 <?php
 include 'controller/connect.php';
 date_default_timezone_set('Asia/Jakarta');
-$query = mysqli_query($con, "SELECT tb_order.*,nama,level, SUM(harga_menu*jumlah) AS total_harga FROM tb_order 
+$query = mysqli_query($con, "SELECT tb_order.*,tb_bayar.*,nama,level, SUM(harga_menu*jumlah) AS total_harga FROM tb_order 
         LEFT JOIN tb_user ON tb_user.id = tb_order.pelayan
         LEFT JOIN tb_list_order ON tb_list_order.kode_order = tb_order.id_order
         LEFT JOIN tb_daftar_menu ON tb_daftar_menu.id = tb_list_order.menu
-        GROUP BY id_order");
+        LEFT JOIN tb_bayar ON tb_bayar.id_bayar = tb_order.id_order
+        GROUP BY id_order ORDER BY waktu_order DESC");
 while ($data = mysqli_fetch_array($query)) {
     $result[] = $data;
 }
@@ -129,7 +130,7 @@ while ($data = mysqli_fetch_array($query)) {
                     <!-- End Modal Edit Order -->
 
                     <!-- Modal Delete Order-->
-                    <div class="modal fade" id="DeleteUser<?= $row['id_order']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="DeleteOrder<?= $row['id_order']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -190,7 +191,7 @@ while ($data = mysqli_fetch_array($query)) {
                                         </a>
                                     </td>
                                     <td><?= $row['meja'] ?></td>
-                                    <td>Rp.<?= number_format($row['total_harga'], 0, ',', '.') ?></td>
+                                    <td>Rp.<?= $row['total_harga'] !== null ? number_format($row['total_harga'], 0, ',', '.') : '0' ?></td>
                                     <td class="text-nowrap">
                                         <?php if ($row['level'] == 1) echo  "Admin" . " | " . $row['nama'];
                                         elseif ($row['level'] == 2) echo "Pelayan" . " | " . $row['nama'];
@@ -198,7 +199,7 @@ while ($data = mysqli_fetch_array($query)) {
                                         elseif ($row['level'] == 4) echo "Dapur" . " | " . $row['nama'];
                                         else echo "User"; ?>
                                     </td>
-                                    <td><?= $row['status'] ?></span></td>
+                                    <td><?php echo (!empty($row['id_bayar'])) ? "<span class='badge text-bg-success'>dibayar</span>" : "" ; ?></span></td>
                                     <td><?= $row['waktu_order'] ?></td>
                                     <td>
                                         <div class="d-flex gap-1">
@@ -208,11 +209,11 @@ while ($data = mysqli_fetch_array($query)) {
                                                     <i class="bi bi-three-dots-vertical"></i>
                                                 </a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#EditOrder<?= $row['id_order']; ?>"><i class="bi bi-pencil-square text-warning"></i> Edit</a></li>
+                                                    <li><a class="dropdown-item <?php echo (!empty($row['id_bayar'])) ? 'disabled' : ''; ?>" href="#" data-bs-toggle="modal" data-bs-target="#EditOrder<?= $row['id_order']; ?>"><i class="bi bi-pencil-square <?php echo (!empty($row['id_bayar'])) ? ' text-secondary' : 'text-warning'; ?>"></i> Edit</a></li>
                                                     <li>
                                                         <hr class="dropdown-divider">
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#DeleteUser<?= $row['id_order']; ?>"><i class="bi bi-trash3 text-danger"></i> Delete</a></li>
+                                                    <li><a class="dropdown-item <?php echo (!empty($row['id_bayar'])) ? 'disabled' : ''; ?>" href="#" data-bs-toggle="modal" data-bs-target="#DeleteOrder<?= $row['id_order']; ?>"><i class="bi bi-trash3 <?php echo (!empty($row['id_bayar'])) ? ' text-secondary' : 'text-danger'; ?>"></i> Delete</a></li>
                                                 </ul>
                                             </div>
                                         </div>
