@@ -1,8 +1,12 @@
 <?php
-session_start();
+// session_start();
 if (empty($_SESSION['username_thecoffe'])) {
     header('location:login');
 }
+
+include "controller/connect.php";
+$query = mysqli_query($con, "SELECT * FROM tb_user WHERE username='$_SESSION[username_thecoffe]'");
+$hasil = mysqli_fetch_array($query);
 ?>
 
 <!doctype html>
