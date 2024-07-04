@@ -14,8 +14,8 @@ $row = mysqli_fetch_array($query);
                         <?php echo $row['nama']; ?>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> Profile</a></li>
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ubahPasword<?php echo $row['id']; ?>"><i class="bi bi-pencil-square"></i> Change Password</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ubahProfile"><i class="bi bi-person-circle"></i> Profile</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ubahPasword"><i class="bi bi-pencil-square"></i> Change Password</a></li>
                         <li><a class="dropdown-item" href="logout"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
                     </ul>
                 </li>
@@ -25,8 +25,7 @@ $row = mysqli_fetch_array($query);
 </nav>
 
 <!-- Modal Change Password -->
-
-<div class="modal fade" id="ubahPasword<?php echo $row['id']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ubahPasword" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
         <div class="modal-content">
             <div class="modal-header">
@@ -79,5 +78,68 @@ $row = mysqli_fetch_array($query);
         </div>
     </div>
 </div>
+<!-- End Modal Change Password -->
+    
+<!-- Modal Change Profile -->
+<div class="modal fade" id="ubahProfile" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ubah Profile</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="needs-validation" novalidate action="controller/proses_ubah_profile.php" method="POST">
+                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
 
-<!-- End Modal Changw Password -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <input disabled type="email" class="form-control" id="floatingInput" placeholder="username@example.com" name="username" required value="<?php echo $_SESSION['username_thecoffe']; ?>">
+                                <label for="floatingInput">Username</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingNama" name="nama" required value="<?= $row['nama']; ?>">
+                                <label for="floatingPassword">Nama</label>
+                                <div class="invalid-feedback">
+                                    Masukan Nama Anda.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <input type="number" name="nohp" class="form-control" id="floatingNoHp" placeholder="08xxxxxxx" required value="<?= $row['nohp']; ?>">
+                                <label for="floatingpassword">Nomor Hp</label>
+                                <div class="invalid-feedback">
+                                    Masukan Nomor Hp Anda.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <textarea name="alamat" class="form-control" id="" style="height: 100px;" required><?= $row['alamat']; ?></textarea>
+                                <label for="floatingpassword">Alamat</label>
+                                <div class="invalid-feedback">
+                                    Masukan Alamat Anda.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="ubah_profile_validate" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal Change Profile -->

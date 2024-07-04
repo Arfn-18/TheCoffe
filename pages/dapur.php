@@ -182,6 +182,7 @@ $select_daftar_menu = mysqli_query($con, "SELECT id,nama_menu FROM tb_daftar_men
                         <?php
                         $no = 1;
                         foreach ($result as $row) {
+                            if($row['status']!=2){
                         ?>
                         <tr class="align-middle">
                             <th scope="row"><?= $no++ ?></th>
@@ -207,6 +208,7 @@ $select_daftar_menu = mysqli_query($con, "SELECT id,nama_menu FROM tb_daftar_men
                             </td>
                         </tr>
                         <?php
+                            } 
                         }
                         ?>
                     </tbody>
