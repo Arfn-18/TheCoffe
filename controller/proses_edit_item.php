@@ -10,6 +10,20 @@ $menu = (isset($_POST['menu'])) ? htmlentities($_POST['menu']) : "";
 $jumlah = (isset($_POST['jumlah'])) ? htmlentities($_POST['jumlah']) : "";
 
 if (!empty(isset($_POST['edit_item_validate']))) {
+    $select = mysqli_query($con, "SELECT tb_list_order.*, tb_daftar_menu.nama_menu 
+                                  FROM tb_list_order 
+                                  LEFT JOIN tb_daftar_menu ON tb_list_order.menu = tb_daftar_menu.id
+                                  WHERE tb_list_order.menu = '$menu' AND tb_list_order.kode_order = '$kode_order' AND tb_list_order.id_list_order != '$id'");
+    if (mysqli_num_rows($select) > 0) {
+        $row = mysqli_fetch_assoc($select);
+        $nama_menu = $row['nama_menu'];
+        $message = '
+        <script>
+        window.location = "../?page=order_item&order=' . $kode_order . '&meja=' . $meja . '&pelanggan=' . $pelanggan . '";
+        alert("Menu : ' . $nama_menu . ' sudah terdaftar");
+        </script>
+        ';
+    } else {
         // Insert the new order item
         $query = mysqli_query($con, "update tb_list_order SET menu='$menu', jumlah='$jumlah', catatan='$catatan' WHERE id_list_order='$id'");
         if ($query) {
@@ -28,6 +42,7 @@ if (!empty(isset($_POST['edit_item_validate']))) {
             </script>
             ';
         }
+    }
 }
 echo $message;
 ?>
