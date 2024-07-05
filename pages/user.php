@@ -332,7 +332,7 @@ while ($data = mysqli_fetch_array($query)) {
                                 <tr class="align-middle">
                                     <th scope="row"><?php echo $no++ ?></th>
                                     <td>
-                                        <a href="#" class="text-decoration-none text-light" data-bs-toggle="modal" data-bs-target="#viewUser<?= $row['id']; ?>">
+                                        <a href="#" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#viewUser<?= $row['id']; ?>">
                                             <?php echo $row['nama'] ?>
                                         </a>
                                     </td>

@@ -54,12 +54,12 @@ while ($data = mysqli_fetch_array($query)) {
                                 <tr class="align-middle">
                                     <th scope="row"><?= $no++ ?></th>
                                     <td>
-                                        <a href="./?page=order_item&order=<?= $row['id_order'] . "&meja=" . $row['meja'] . "&pelanggan=" . $row['pelanggan'] ?>" class="text-light text-decoration-none">
+                                        <a href="./?page=order_item&order=<?= $row['id_order'] . "&meja=" . $row['meja'] . "&pelanggan=" . $row['pelanggan'] ?>" class="text-dark text-decoration-none">
                                             <?= $row['id_order'] ?>
                                         </a>
                                     </td>
                                     <td class="text-nowrap">
-                                        <a href="./?page=order_item&order=<?= $row['id_order'] . "&meja=" . $row['meja'] . "&pelanggan=" . $row['pelanggan'] ?>" class="text-light text-decoration-none">
+                                        <a href="./?page=order_item&order=<?= $row['id_order'] . "&meja=" . $row['meja'] . "&pelanggan=" . $row['pelanggan'] ?>" class="text-dark text-decoration-none">
                                             <?= $row['pelanggan'] ?>
                                         </a>
                                     </td>

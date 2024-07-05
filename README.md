@@ -1,1 +1,1 @@
-Gk tau ah males, pengen beli truk
+Gk tau ah males, pengen beli \*Truk123
