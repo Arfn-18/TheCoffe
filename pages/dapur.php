@@ -39,183 +39,183 @@ $select_daftar_menu = mysqli_query($con, "SELECT id,nama_menu FROM tb_daftar_men
             } else {
                 foreach ($result as $row) {
             ?>
-                    
-            <!-- Modal Terima Dapur-->
-            <div class="modal fade" id="terima<?= $row['id_list_order']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-md modal-fullscreen-md-down">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Menu</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                        <form class="needs-validation" novalidate action="controller/proses_terima_item.php" method="POST">
-                        <input type="hidden" name="id" value="<?php echo $row['id_list_order']?>">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="form-floating mb-3">
-                                    <select disabled class="form-select" name="menu" aria-label="Default select example" required>
-                                        <option value="" hidden selected>Terima Pesanan Makanan</option>
-                                        <?php
-                                        foreach ($select_daftar_menu as $valueDaf) {
-                                            if($row['menu'] == $valueDaf['id']){
-                                                echo '<option selected value="' . $valueDaf['id'] . '">' . $valueDaf['nama_menu'] . '</option>';
-                                            }else{
-                                                echo '<option value="' . $valueDaf['id'] . '">' . $valueDaf['nama_menu'] . '</option>';
-                                            }
-                                        }
-                                        ?>
-                                    </select>
-                                    <label for="floatingInput">Nama Menu</label>
-                                    <div class="invalid-feedback">
-                                        Masukan Nama Menu.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating mb-3">
-                                    <input disabled type="number" class="form-control" id="floatingInput" placeholder="" name="jumlah" required value="<?= $row['jumlah'] ?>">
-                                    <label for="floatingInput">Jumlah Porsi</label>
-                                    <div class="invalid-feedback">
-                                        Masukan Jumlah Porsi.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <textarea name="catatan" class="form-control" id="" style="height: 100px;"><?= $row['catatan'] ?></textarea>
-                            <label for="floatingInput">Catatan</label>
-                            <div class="invalid-feedback">
-                                Masukan Keterangan.
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="terima_item_validate" class="btn btn-primary">Terima</button>
-                        </div>
-                    </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Modal Terima Dapur -->
-             
-            <!-- Modal Siap Saji-->
-            <div class="modal fade" id="siapsaji<?= $row['id_list_order']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-md modal-fullscreen-md-down">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Menu</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                        <form class="needs-validation" novalidate action="controller/proses_siapsaji_item.php" method="POST">
-                        <input type="hidden" name="id" value="<?php echo $row['id_list_order']?>">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="form-floating mb-3">
-                                    <select disabled class="form-select" name="menu" aria-label="Default select example" required>
-                                        <option value="" hidden selected>Siap Saji</option>
-                                        <?php
-                                        foreach ($select_daftar_menu as $valueDaf) {
-                                            if($row['menu'] == $valueDaf['id']){
-                                                echo '<option selected value="' . $valueDaf['id'] . '">' . $valueDaf['nama_menu'] . '</option>';
-                                            }else{
-                                                echo '<option value="' . $valueDaf['id'] . '">' . $valueDaf['nama_menu'] . '</option>';
-                                            }
-                                        }
-                                        ?>
-                                    </select>
-                                    <label for="floatingInput">Nama Menu</label>
-                                    <div class="invalid-feedback">
-                                        Masukan Nama Menu.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating mb-3">
-                                    <input disabled type="number" class="form-control" id="floatingInput" placeholder="" name="jumlah" required value="<?= $row['jumlah'] ?>">
-                                    <label for="floatingInput">Jumlah Porsi</label>
-                                    <div class="invalid-feedback">
-                                        Masukan Jumlah Porsi.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <textarea name="catatan" class="form-control" id="" style="height: 100px;"><?= $row['catatan'] ?></textarea>
-                            <label for="floatingInput">Catatan</label>
-                            <div class="invalid-feedback">
-                                Masukan Keterangan.
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="siapsaji_item_validate" class="btn btn-primary">Siap Saji</button>
-                        </div>
-                    </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Modal Siap Saji -->
 
-            <?php
-            }
-            ?>
-             
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr class="text-nowrap">
-                            <th scope="col">No</th>
-                            <th scope="col">Kode Order</th>
-                            <th scope="col">Waktu Order</th>
-                            <th scope="col">Nama Menu</th>
-                            <th scope="col">Qty</th>
-                            <th scope="col">Catatan</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider">
-                        <?php
-                        $no = 1;
-                        foreach ($result as $row) {
-                            if($row['status']!=2){
-                        ?>
-                        <tr class="align-middle">
-                            <th scope="row"><?= $no++ ?></th>
-                            <td><?= $row['kode_order'] ?></td>
-                            <td><?= $row['waktu_order'] ?></td>
-                            <td class="text-nowrap"><?= $row['nama_menu'] ?></td>
-                            <td><?= $row['jumlah'] ?></td>
-                            <td>
-                                <?php
-                                    if($row['status']==1){
-                                        echo "<span class='badge text-bg-warning'>Dimasak</span>";
-                                    } elseif($row['status']==2){
-                                        echo "<span class='badge text-bg-primary'>Siap disajikan</span>";
-                                    }
-                                ?>
-                            </td>
-                            <td><?= $row['catatan'] ?></td>
-                            <td>
-                                <div class="d-flex gap-1">
-                                    <button class="<?php echo (!empty($row['status'])) ? "btn btn-secondary btn-sm disabled" : "btn btn-primary btn-sm" ; ?>" title="Detail" data-bs-toggle="modal" data-bs-target="#terima<?= $row['id_list_order']; ?>">Terima</i></button>
-                                    <button class="text-nowrap <?php echo (empty($row['status']) || $row['status']!=1) ? "btn btn-secondary btn-sm disabled" : "btn btn-success btn-sm" ; ?>" title="Detail" data-bs-toggle="modal" data-bs-target="#siapsaji<?= $row['id_list_order']; ?>">Siap Saji</button>
+                    <!-- Modal Terima Dapur-->
+                    <div class="modal fade" id="terima<?= $row['id_list_order']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-md modal-fullscreen-md-down">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Menu</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                            </td>
-                        </tr>
-                        <?php
-                            } 
-                        }
-                        ?>
-                    </tbody>
-                    <tfoot>
-                    </tfoot>
-                </table>
-            </div>
+                                <div class="modal-body">
+                                    <form class="needs-validation" novalidate action="controller/proses_terima_item.php" method="POST">
+                                        <input type="hidden" name="id" value="<?php echo $row['id_list_order'] ?>">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-floating mb-3">
+                                                    <select disabled class="form-select" name="menu" aria-label="Default select example" required>
+                                                        <option value="" hidden selected>Terima Pesanan Makanan</option>
+                                                        <?php
+                                                        foreach ($select_daftar_menu as $valueDaf) {
+                                                            if ($row['menu'] == $valueDaf['id']) {
+                                                                echo '<option selected value="' . $valueDaf['id'] . '">' . $valueDaf['nama_menu'] . '</option>';
+                                                            } else {
+                                                                echo '<option value="' . $valueDaf['id'] . '">' . $valueDaf['nama_menu'] . '</option>';
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                    <label for="floatingInput">Nama Menu</label>
+                                                    <div class="invalid-feedback">
+                                                        Masukan Nama Menu.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-floating mb-3">
+                                                    <input disabled type="number" class="form-control" id="floatingInput" placeholder="" name="jumlah" required value="<?= $row['jumlah'] ?>">
+                                                    <label for="floatingInput">Jumlah Porsi</label>
+                                                    <div class="invalid-feedback">
+                                                        Masukan Jumlah Porsi.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <textarea name="catatan" class="form-control" id="" style="height: 100px;"><?= $row['catatan'] ?></textarea>
+                                            <label for="floatingInput">Catatan</label>
+                                            <div class="invalid-feedback">
+                                                Masukan Keterangan.
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" name="terima_item_validate" class="btn btn-primary">Terima</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Modal Terima Dapur -->
+
+                    <!-- Modal Siap Saji-->
+                    <div class="modal fade" id="siapsaji<?= $row['id_list_order']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-md modal-fullscreen-md-down">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Menu</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="needs-validation" novalidate action="controller/proses_siapsaji_item.php" method="POST">
+                                        <input type="hidden" name="id" value="<?php echo $row['id_list_order'] ?>">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-floating mb-3">
+                                                    <select disabled class="form-select" name="menu" aria-label="Default select example" required>
+                                                        <option value="" hidden selected>Siap Saji</option>
+                                                        <?php
+                                                        foreach ($select_daftar_menu as $valueDaf) {
+                                                            if ($row['menu'] == $valueDaf['id']) {
+                                                                echo '<option selected value="' . $valueDaf['id'] . '">' . $valueDaf['nama_menu'] . '</option>';
+                                                            } else {
+                                                                echo '<option value="' . $valueDaf['id'] . '">' . $valueDaf['nama_menu'] . '</option>';
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                    <label for="floatingInput">Nama Menu</label>
+                                                    <div class="invalid-feedback">
+                                                        Masukan Nama Menu.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-floating mb-3">
+                                                    <input disabled type="number" class="form-control" id="floatingInput" placeholder="" name="jumlah" required value="<?= $row['jumlah'] ?>">
+                                                    <label for="floatingInput">Jumlah Porsi</label>
+                                                    <div class="invalid-feedback">
+                                                        Masukan Jumlah Porsi.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <textarea name="catatan" class="form-control" id="" style="height: 100px;"><?= $row['catatan'] ?></textarea>
+                                            <label for="floatingInput">Catatan</label>
+                                            <div class="invalid-feedback">
+                                                Masukan Keterangan.
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" name="siapsaji_item_validate" class="btn btn-primary">Siap Saji</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Modal Siap Saji -->
+
+                <?php
+                }
+                ?>
+
+                <div class="table-responsive">
+                    <table class="table table-hover" id="example">
+                        <thead>
+                            <tr class="text-nowrap">
+                                <th scope="col">No</th>
+                                <th scope="col">Kode Order</th>
+                                <th scope="col">Waktu Order</th>
+                                <th scope="col">Nama Menu</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Catatan</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <?php
+                            $no = 1;
+                            foreach ($result as $row) {
+                                if ($row['status'] != 2) {
+                            ?>
+                                    <tr class="align-middle">
+                                        <th scope="row"><?= $no++ ?></th>
+                                        <td><?= $row['kode_order'] ?></td>
+                                        <td><?= $row['waktu_order'] ?></td>
+                                        <td class="text-nowrap"><?= $row['nama_menu'] ?></td>
+                                        <td><?= $row['jumlah'] ?></td>
+                                        <td>
+                                            <?php
+                                            if ($row['status'] == 1) {
+                                                echo "<span class='badge text-bg-warning'>Dimasak</span>";
+                                            } elseif ($row['status'] == 2) {
+                                                echo "<span class='badge text-bg-primary'>Siap disajikan</span>";
+                                            }
+                                            ?>
+                                        </td>
+                                        <td><?= $row['catatan'] ?></td>
+                                        <td>
+                                            <div class="d-flex gap-1">
+                                                <button class="<?php echo (!empty($row['status'])) ? "btn btn-secondary btn-sm disabled" : "btn btn-primary btn-sm"; ?>" title="Detail" data-bs-toggle="modal" data-bs-target="#terima<?= $row['id_list_order']; ?>">Terima</i></button>
+                                                <button class="text-nowrap <?php echo (empty($row['status']) || $row['status'] != 1) ? "btn btn-secondary btn-sm disabled" : "btn btn-success btn-sm"; ?>" title="Detail" data-bs-toggle="modal" data-bs-target="#siapsaji<?= $row['id_list_order']; ?>">Siap Saji</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
+                </div>
             <?php
             }
             ?>

@@ -8,7 +8,7 @@ while ($data = mysqli_fetch_array($query)) {
 $select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kategori_menu");
 ?>
 
-<div class="konten col-lg rounded mb-5">
+<div class="konten col-lg-9 rounded mb-5">
     <div class="card">
         <div class="card-header fw-bold">
             Halaman Menu | TheCoffe
@@ -282,7 +282,7 @@ $select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kateg
                 }
                 ?>
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover table-sm">
+                    <table class="table table-striped table-hover table-sm" id="example">
                         <thead>
                             <tr class="text-nowrap">
                                 <th scope="col">No</th>
@@ -346,6 +346,7 @@ $select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kateg
         </div>
     </div>
 </div>
+
 
 
 <script>
