@@ -14,7 +14,7 @@ while ($data = mysqli_fetch_array($query)) {
 // $select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kategori_menu");
 ?>
 
-<div class="konten col-lg rounded mb-5">
+<div class="konten col-lg-9 rounded mb-5">
     <div class="card">
         <div class="card-header fw-bold">
             Halaman Order | TheCoffe
@@ -159,7 +159,7 @@ while ($data = mysqli_fetch_array($query)) {
                 }
                 ?>
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover" id="example">
                         <thead>
                             <tr class="text-nowrap">
                                 <th scope="col">No</th>

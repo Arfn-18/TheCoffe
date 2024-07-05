@@ -301,7 +301,7 @@ $select_daftar_menu = mysqli_query($con, "SELECT id,nama_menu FROM tb_daftar_men
                 <!-- End Modal Bayar -->
 
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="example">
                         <thead>
                             <tr class="text-nowrap">
                                 <th scope="col">No</th>
