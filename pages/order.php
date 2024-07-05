@@ -134,7 +134,7 @@ while ($data = mysqli_fetch_array($query)) {
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Order <?= $row['pelanggan']. " | " .$row['id_order'] ?></h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Order <?= $row['pelanggan'] . " | " . $row['id_order'] ?></h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -181,12 +181,12 @@ while ($data = mysqli_fetch_array($query)) {
                                 <tr class="align-middle">
                                     <th scope="row"><?= $no++ ?></th>
                                     <td>
-                                        <a href="./?page=order_item&order=<?= $row['id_order'] . "&meja=" . $row['meja'] . "&pelanggan=" . $row['pelanggan'] ?>" class="text-light text-decoration-none">
+                                        <a href="./?page=order_item&order=<?= $row['id_order'] . "&meja=" . $row['meja'] . "&pelanggan=" . $row['pelanggan'] ?>" class="text-dark text-decoration-none">
                                             <?= $row['id_order'] ?>
                                         </a>
                                     </td>
                                     <td class="text-nowrap">
-                                        <a href="./?page=order_item&order=<?= $row['id_order'] . "&meja=" . $row['meja'] . "&pelanggan=" . $row['pelanggan'] ?>" class="text-light text-decoration-none">
+                                        <a href="./?page=order_item&order=<?= $row['id_order'] . "&meja=" . $row['meja'] . "&pelanggan=" . $row['pelanggan'] ?>" class="text-dark text-decoration-none">
                                             <?= $row['pelanggan'] ?>
                                         </a>
                                     </td>
@@ -199,7 +199,7 @@ while ($data = mysqli_fetch_array($query)) {
                                         elseif ($row['level'] == 4) echo "Dapur" . " | " . $row['nama'];
                                         else echo "User"; ?>
                                     </td>
-                                    <td><?php echo (!empty($row['id_bayar'])) ? "<span class='badge text-bg-success'>dibayar</span>" : "" ; ?></span></td>
+                                    <td><?php echo (!empty($row['id_bayar'])) ? "<span class='badge text-bg-success'>dibayar</span>" : ""; ?></span></td>
                                     <td><?= $row['waktu_order'] ?></td>
                                     <td>
                                         <div class="d-flex gap-1">

@@ -69,9 +69,9 @@ $select_daftar_menu = mysqli_query($con, "SELECT id,nama_menu FROM tb_daftar_men
                         </div>
                         <div class="modal-body">
                             <form class="needs-validation" novalidate action="controller/proses_input_item.php" method="POST">
-                                <input type="hidden" name="kode_order" value="<?php echo $kode_order?>">
-                                <input type="hidden" name="meja" value="<?php echo $meja?>">
-                                <input type="hidden" name="pelanggan" value="<?php echo $pelanggan?>">
+                                <input type="hidden" name="kode_order" value="<?php echo $kode_order ?>">
+                                <input type="hidden" name="meja" value="<?php echo $meja ?>">
+                                <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>">
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-floating mb-3">
@@ -123,247 +123,247 @@ $select_daftar_menu = mysqli_query($con, "SELECT id,nama_menu FROM tb_daftar_men
             } else {
                 foreach ($result as $row) {
             ?>
-                    
-            <!-- Modal Edit Menu-->
-            <div class="modal fade" id="editItem<?= $row['id_list_order']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-md modal-fullscreen-md-down">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Menu</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                        <form class="needs-validation" novalidate action="controller/proses_edit_item.php" method="POST">
-                        <input type="hidden" name="id" value="<?php echo $row['id_list_order']?>">
-                        <input type="hidden" name="kode_order" value="<?php echo $kode_order?>">
-                        <input type="hidden" name="meja" value="<?php echo $meja?>">
-                        <input type="hidden" name="pelanggan" value="<?php echo $pelanggan?>">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="form-floating mb-3">
-                                    <select class="form-select" name="menu" aria-label="Default select example" required>
-                                        <option value="" hidden selected>Pilih Daftar Menu</option>
-                                        <?php
-                                        foreach ($select_daftar_menu as $valueDaf) {
-                                            if($row['menu'] == $valueDaf['id']){
-                                                echo '<option selected value="' . $valueDaf['id'] . '">' . $valueDaf['nama_menu'] . '</option>';
-                                            }else{
-                                                echo '<option value="' . $valueDaf['id'] . '">' . $valueDaf['nama_menu'] . '</option>';
-                                            }
-                                        }
-                                        ?>
-                                    </select>
-                                    <label for="floatingInput">Nama Menu</label>
-                                    <div class="invalid-feedback">
-                                        Masukan Nama Menu.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="floatingInput" placeholder="" name="jumlah" required value="<?= $row['jumlah'] ?>">
-                                    <label for="floatingInput">Jumlah Porsi</label>
-                                    <div class="invalid-feedback">
-                                        Masukan Jumlah Porsi.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <textarea name="catatan" class="form-control" id="" style="height: 100px;"><?= $row['catatan'] ?></textarea>
-                            <label for="floatingInput">Catatan</label>
-                            <div class="invalid-feedback">
-                                Masukan Keterangan.
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="edit_item_validate" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Modal Edit Menu -->
 
-            <!-- Modal Delete Menu-->
-            <div class="modal fade" id="deleteItem<?= $row['id_list_order']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Menu</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="needs-validation" novalidate action="controller/proses_delete_item.php" method="POST">
-                                <input type="hidden" name="kode_order" value="<?php echo $kode_order?>">
-                                <input type="hidden" name="meja" value="<?php echo $meja?>">
-                                <input type="hidden" name="pelanggan" value="<?php echo $pelanggan?>">
-                                <input type="hidden" name="id" value="<?php echo $row['id_list_order']; ?>">
-                                <div class="col-lg-12 mb-3">
-                                    <div class="alert alert-light" role="alert">Apakah anda yakin ingin menghapus <b><?= $row['nama_menu']; ?></b> dari list order?</div>
+                    <!-- Modal Edit Menu-->
+                    <div class="modal fade" id="editItem<?= $row['id_list_order']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-md modal-fullscreen-md-down">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Menu</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="submit" name="delete_item_validate" class="btn btn-danger">Delete</button>
+                                <div class="modal-body">
+                                    <form class="needs-validation" novalidate action="controller/proses_edit_item.php" method="POST">
+                                        <input type="hidden" name="id" value="<?php echo $row['id_list_order'] ?>">
+                                        <input type="hidden" name="kode_order" value="<?php echo $kode_order ?>">
+                                        <input type="hidden" name="meja" value="<?php echo $meja ?>">
+                                        <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-floating mb-3">
+                                                    <select class="form-select" name="menu" aria-label="Default select example" required>
+                                                        <option value="" hidden selected>Pilih Daftar Menu</option>
+                                                        <?php
+                                                        foreach ($select_daftar_menu as $valueDaf) {
+                                                            if ($row['menu'] == $valueDaf['id']) {
+                                                                echo '<option selected value="' . $valueDaf['id'] . '">' . $valueDaf['nama_menu'] . '</option>';
+                                                            } else {
+                                                                echo '<option value="' . $valueDaf['id'] . '">' . $valueDaf['nama_menu'] . '</option>';
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                    <label for="floatingInput">Nama Menu</label>
+                                                    <div class="invalid-feedback">
+                                                        Masukan Nama Menu.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-floating mb-3">
+                                                    <input type="number" class="form-control" id="floatingInput" placeholder="" name="jumlah" required value="<?= $row['jumlah'] ?>">
+                                                    <label for="floatingInput">Jumlah Porsi</label>
+                                                    <div class="invalid-feedback">
+                                                        Masukan Jumlah Porsi.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <textarea name="catatan" class="form-control" id="" style="height: 100px;"><?= $row['catatan'] ?></textarea>
+                                            <label for="floatingInput">Catatan</label>
+                                            <div class="invalid-feedback">
+                                                Masukan Keterangan.
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" name="edit_item_validate" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- End Modal Delete Menu -->
+                    <!-- End Modal Edit Menu -->
+
+                    <!-- Modal Delete Menu-->
+                    <div class="modal fade" id="deleteItem<?= $row['id_list_order']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Menu</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="needs-validation" novalidate action="controller/proses_delete_item.php" method="POST">
+                                        <input type="hidden" name="kode_order" value="<?php echo $kode_order ?>">
+                                        <input type="hidden" name="meja" value="<?php echo $meja ?>">
+                                        <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>">
+                                        <input type="hidden" name="id" value="<?php echo $row['id_list_order']; ?>">
+                                        <div class="col-lg-12 mb-3">
+                                            <div class="alert alert-light" role="alert">Apakah anda yakin ingin menghapus <b><?= $row['nama_menu']; ?></b> dari list order?</div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" name="delete_item_validate" class="btn btn-danger">Delete</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Modal Delete Menu -->
 
                 <?php
                 }
                 ?>
 
-            <!-- Modal Bayar -->
-            <div class="modal fade" id="bayar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-fullscreen-md-down">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Pembayaran</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr class="text-nowrap">
-                                            <th scope="col">No</th>
-                                            <th scope="col">Nama Menu</th>
-                                            <th scope="col">Harga Satuan</th>
-                                            <th scope="col">Qty</th>
-                                            <th scope="col">Catatan</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Total Harga</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-group-divider">
-                                        <?php
-                                        $no = 1;
-                                        $total_pembayaran = 0;
-                                        foreach ($result as $row) {
-                                        ?>
-                                            <tr class="align-middle">
-                                                <th scope="row"><?= $no++ ?></th>
-                                                <td class="text-nowrap"><?= $row['nama_menu'] ?></td>
-                                                <td>Rp.<?= number_format($row['harga_menu'], 0, ',', '.') ?></td>
-                                                <td><?= $row['jumlah'] ?></td>
-                                                <td><?= $row['catatan'] ?></td>
-                                                <td><?= $row['status'] ?></td>
-                                                <td>Rp.<?= number_format($row['total_harga'], 0, ',', '.') ?></td>
-                                            </tr>
-                                        <?php
-                                            $total_pembayaran += $row['total_harga'];
-                                        }
-                                        ?>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr class="align-middle ">
-                                            <td colspan="6" class="fw-bold">
-                                                Total Pembayaran
-                                            </td>
-                                            <td class="fw-bold">Rp.<?= number_format($total_pembayaran, 0, ',', '.') ?></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                <!-- Modal Bayar -->
+                <div class="modal fade" id="bayar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-fullscreen-md-down">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Pembayaran</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <span class="text-danger fs-5 fw-semibold">Apakah anda yakin ingin melakukan pembayaran</span>
-                            <form class="needs-validation" novalidate action="controller/proses_bayar.php" method="POST">
-                                <input type="hidden" name="kode_order" value="<?php echo $kode_order?>">
-                                <input type="hidden" name="meja" value="<?php echo $meja?>">
-                                <input type="hidden" name="pelanggan" value="<?php echo $pelanggan?>">
-                                <input type="hidden" name="total_pembayaran" value="<?php echo $total_pembayaran?>">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-floating mb-3">
-                                            <input type="number" class="form-control" id="floatingInput" placeholder="Nominal Uang" name="uang" required>
-                                            <label for="floatingInput">Nominal Uang</label>
-                                            <div class="invalid-feedback">
-                                                Masukan Nominal Uang.
+                            <div class="modal-body">
+
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr class="text-nowrap">
+                                                <th scope="col">No</th>
+                                                <th scope="col">Nama Menu</th>
+                                                <th scope="col">Harga Satuan</th>
+                                                <th scope="col">Qty</th>
+                                                <th scope="col">Catatan</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Total Harga</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-group-divider">
+                                            <?php
+                                            $no = 1;
+                                            $total_pembayaran = 0;
+                                            foreach ($result as $row) {
+                                            ?>
+                                                <tr class="align-middle">
+                                                    <th scope="row"><?= $no++ ?></th>
+                                                    <td class="text-nowrap"><?= $row['nama_menu'] ?></td>
+                                                    <td>Rp.<?= number_format($row['harga_menu'], 0, ',', '.') ?></td>
+                                                    <td><?= $row['jumlah'] ?></td>
+                                                    <td><?= $row['catatan'] ?></td>
+                                                    <td><?= $row['status'] ?></td>
+                                                    <td>Rp.<?= number_format($row['total_harga'], 0, ',', '.') ?></td>
+                                                </tr>
+                                            <?php
+                                                $total_pembayaran += $row['total_harga'];
+                                            }
+                                            ?>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="align-middle ">
+                                                <td colspan="6" class="fw-bold">
+                                                    Total Pembayaran
+                                                </td>
+                                                <td class="fw-bold">Rp.<?= number_format($total_pembayaran, 0, ',', '.') ?></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <span class="text-danger fs-5 fw-semibold">Apakah anda yakin ingin melakukan pembayaran</span>
+                                <form class="needs-validation" novalidate action="controller/proses_bayar.php" method="POST">
+                                    <input type="hidden" name="kode_order" value="<?php echo $kode_order ?>">
+                                    <input type="hidden" name="meja" value="<?php echo $meja ?>">
+                                    <input type="hidden" name="pelanggan" value="<?php echo $pelanggan ?>">
+                                    <input type="hidden" name="total_pembayaran" value="<?php echo $total_pembayaran ?>">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-floating mb-3">
+                                                <input type="number" class="form-control" id="floatingInput" placeholder="Nominal Uang" name="uang" required>
+                                                <label for="floatingInput">Nominal Uang</label>
+                                                <div class="invalid-feedback">
+                                                    Masukan Nominal Uang.
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" name="bayar_validate" class="btn btn-primary">Bayar</button>
-                                </div>
-                            </form>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" name="bayar_validate" class="btn btn-primary">Bayar</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- End Modal Bayar -->
-             
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr class="text-nowrap">
-                            <th scope="col">No</th>
-                            <th scope="col">Nama Menu</th>
-                            <th scope="col">Harga Satuan</th>
-                            <th scope="col">Qty</th>
-                            <th scope="col">Catatan</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Total Harga</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider">
-                        <?php
-                        $no = 1;
-                        $total_pembayaran = 0;
-                        foreach ($result as $row) {
-                        ?>
-                            <tr class="align-middle">
-                                <th scope="row"><?= $no++ ?></th>
-                                <td class="text-nowrap"><?= $row['nama_menu'] ?></td>
-                                <td>Rp.<?= number_format($row['harga_menu'], 0, ',', '.') ?></td>
-                                <td><?= $row['jumlah'] ?></td>
-                                <td><?= $row['catatan'] ?></td>
-                                <td>
-                                    <?php
-                                        if($row['status']==1){
+                <!-- End Modal Bayar -->
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="text-nowrap">
+                                <th scope="col">No</th>
+                                <th scope="col">Nama Menu</th>
+                                <th scope="col">Harga Satuan</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Catatan</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Total Harga</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <?php
+                            $no = 1;
+                            $total_pembayaran = 0;
+                            foreach ($result as $row) {
+                            ?>
+                                <tr class="align-middle">
+                                    <th scope="row"><?= $no++ ?></th>
+                                    <td class="text-nowrap"><?= $row['nama_menu'] ?></td>
+                                    <td>Rp.<?= number_format($row['harga_menu'], 0, ',', '.') ?></td>
+                                    <td><?= $row['jumlah'] ?></td>
+                                    <td><?= $row['catatan'] ?></td>
+                                    <td>
+                                        <?php
+                                        if ($row['status'] == 1) {
                                             echo "<span class='badge text-bg-warning'>Dimasak</span>";
-                                        } elseif($row['status']==2){
+                                        } elseif ($row['status'] == 2) {
                                             echo "<span class='badge text-bg-primary'>Siap disajikan</span>";
                                         }
-                                    ?>
+                                        ?>
+                                    </td>
+                                    <td>Rp.<?= number_format($row['total_harga'], 0, ',', '.') ?></td>
+                                    <td>
+                                        <div class="d-flex gap-1">
+                                            <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary btn-sm disabled" : "btn btn-warning btn-sm"; ?>" title="Detail" data-bs-toggle="modal" data-bs-target="#editItem<?= $row['id_list_order']; ?>"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary btn-sm disabled" : "btn btn-danger btn-sm"; ?>" title="Detail" data-bs-toggle="modal" data-bs-target="#deleteItem<?= $row['id_list_order']; ?>"><i class="bi bi-trash3"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php
+                                $total_pembayaran += $row['total_harga'];
+                            }
+                            ?>
+                        </tbody>
+                        <tfoot>
+                            <tr class="align-middle ">
+                                <td colspan="6" class="fw-bold">
+                                    Total Pembayaran
                                 </td>
-                                <td>Rp.<?= number_format($row['total_harga'], 0, ',', '.') ?></td>
-                                <td>
-                                    <div class="d-flex gap-1">
-                                        <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary btn-sm disabled" : "btn btn-warning btn-sm" ; ?>" title="Detail" data-bs-toggle="modal" data-bs-target="#editItem<?= $row['id_list_order']; ?>"><i class="bi bi-pencil-square"></i></button>
-                                        <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary btn-sm disabled" : "btn btn-danger btn-sm" ; ?>" title="Detail" data-bs-toggle="modal" data-bs-target="#deleteItem<?= $row['id_list_order']; ?>"><i class="bi bi-trash3"></i></button>
-                                    </div>
-                                </td>
+                                <td class="fw-bold">Rp.<?= number_format($total_pembayaran, 0, ',', '.') ?></td>
                             </tr>
-                        <?php
-                            $total_pembayaran += $row['total_harga'];
-                        }
-                        ?>
-                    </tbody>
-                    <tfoot>
-                        <tr class="align-middle ">
-                            <td colspan="6" class="fw-bold">
-                                Total Pembayaran
-                            </td>
-                            <td class="fw-bold">Rp.<?= number_format($total_pembayaran, 0, ',', '.') ?></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
+                        </tfoot>
+                    </table>
+                </div>
             <?php
             }
             ?>
             <div>
-                <button type="button" class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary disabled" : "btn btn-primary" ; ?>" data-bs-toggle="modal" data-bs-target="#addItem"><i class="bi bi-plus-circle"></i> Menu</button>
-                <button type="button" class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary disabled" : "btn btn-success" ; ?>" data-bs-toggle="modal" data-bs-target="#bayar"><i class="bi bi-cash-coin"></i> Bayar</button>
+                <button type="button" class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary disabled" : "btn btn-primary"; ?>" data-bs-toggle="modal" data-bs-target="#addItem"><i class="bi bi-plus-circle"></i> Menu</button>
+                <button type="button" class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary disabled" : "btn btn-success"; ?>" data-bs-toggle="modal" data-bs-target="#bayar"><i class="bi bi-cash-coin"></i> Bayar</button>
             </div>
         </div>
     </div>

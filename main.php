@@ -10,7 +10,7 @@ $hasil = mysqli_fetch_array($query);
 ?>
 
 <!doctype html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="light">
 
 <head>
     <meta charset="utf-8">
