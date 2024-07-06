@@ -364,13 +364,97 @@ $select_daftar_menu = mysqli_query($con, "SELECT id,nama_menu FROM tb_daftar_men
             <div>
                 <button type="button" class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary disabled" : "btn btn-primary"; ?>" data-bs-toggle="modal" data-bs-target="#addItem"><i class="bi bi-plus-circle"></i> Menu</button>
                 <button type="button" class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary disabled" : "btn btn-success"; ?>" data-bs-toggle="modal" data-bs-target="#bayar"><i class="bi bi-cash-coin"></i> Bayar</button>
+                <button onclick="printStruk()" class="btn btn-info">Cetak Struk</button>
             </div>
         </div>
     </div>
 </div>
 
+<div id="strukContent" class="d-none">
+    <style>
+        #struk {
+            font-family: "Arial", sans-serif;
+            font-size: 12px;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 80mm;
+        }
+
+        #struk h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        #struk p {
+            margin: 5px;
+        }
+
+        #struk table {
+            font-size: 12px;
+            border-collapse: collapse;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        #struk th,
+        #struk td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #struk .totale {
+            font-weight: bold;
+        }
+    </style>
+    <div id="struk">
+        <h2>Struk Pembayaran TheCoffe</h2>
+        <p>Kode Order : <?= $kode_order ?></p>
+        <p>Meja : <?= $meja ?></p>
+        <p>Pelanggan : <?= $pelanggan ?></p>
+        <p>Waktu Order : <?= date('d/m/Y H:i:s', strtotime($row['waktu_order'])) ?></p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Menu</th>
+                    <th>Harga</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($result as  $row) { ?>
+                    <tr>
+                        <td><?= $row['nama_menu'] ?></td>
+                        <td><?= number_format($row['harga_menu'], 0, ',', '.') ?></td>
+                        <td><?= $row['jumlah'] ?></td>
+                        <td><?= number_format($row['total_harga'], 0, ',', '.') ?></td>
+                    </tr>
+                <?php
+                    $total_pembayaran;
+                } ?>
+                <tr class="totale">
+                    <td colspan="3">Total Harga</td>
+                    <td><?= number_format($total_pembayaran, 0, ',', '.') ?></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <script>
+    function printStruk() {
+        var strukContent = document.getElementById("strukContent").innerHTML;
+
+        var printFrame = document.createElement('iframe');
+        printFrame.style.display = 'none';
+        document.body.appendChild(printFrame);
+        printFrame.contentDocument.write(strukContent)
+        printFrame.contentWindow.print();
+        document.body.removeChild(printFrame);
+    }
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (() => {
         'use strict'
