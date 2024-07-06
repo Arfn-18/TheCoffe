@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 03, 2024 at 02:09 PM
+-- Generation Time: Jul 06, 2024 at 10:21 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -39,7 +39,7 @@ CREATE TABLE `tb_bayar` (
 --
 
 INSERT INTO `tb_bayar` (`id_bayar`, `nominal_uang`, `total_bayar`, `waktu_bayar`) VALUES
-(24070103373, 150000, 120000, '2024-07-03 13:14:22');
+(24070702537, 100000, 95000, '2024-07-06 19:55:16');
 
 -- --------------------------------------------------------
 
@@ -62,11 +62,25 @@ CREATE TABLE `tb_daftar_menu` (
 --
 
 INSERT INTO `tb_daftar_menu` (`id`, `foto_menu`, `nama_menu`, `kategori`, `harga_menu`, `stok_menu`, `keterangan_menu`) VALUES
-(7, '6.png', 'Nasi Kocak', 1, 15000, 99, '-'),
-(8, '4.png', 'Kopi Arabica', 4, 30000, 66, '-'),
-(9, '8.png', 'Nasi Oting\'s', 1, 10000, 999, '-'),
-(36, '41190-Foto-Basreng-Nion-Nion-4.png', 'Basreng Any', 2, 12999, 68, '-'),
-(41, '78584-Logo-ft-UM.png', 'Gorengan Praktikum', 16, 400000, 22, '-');
+(49, '30030-kentang.jpg', 'Kentang Goreng', 17, 15000, 41, ''),
+(50, '70745-ayam.jpg', 'Nasi Ayam Mentega', 1, 25000, 25, ''),
+(51, '23859-americano.jpg', 'Americano', 4, 25000, 25, ''),
+(52, '15954-ayamkari.jpg', 'Kari Ayam', 8, 25000, 41, ''),
+(53, '79977-cheesecake.jpg', 'Cheesecake ', 2, 25000, 51, ''),
+(54, '36264-croissant.jpg', 'Croissant ', 2, 15000, 41, ''),
+(55, '47819-esbuah.jpg', 'Es Buah', 8, 25000, 51, ''),
+(56, '75212-eskuwut.jpg', 'Es Kuwut Bali', 8, 25000, 38, ''),
+(57, '49871-esteh.jpg', 'Es Teh', 14, 7000, 40, ''),
+(58, '40980-expresso.jpg', 'Espresso ', 4, 20000, 21, ''),
+(59, '58332-karisapi.jpg', 'Sapi Lada Hitam', 8, 30000, 24, ''),
+(60, '98503-lemontea.jpg', 'Lemon Tea', 14, 15000, 32, ''),
+(61, '74526-majito.jpg', 'Mojito ', 13, 20000, 53, ''),
+(62, '15606-matcha.jpg', 'Matcha Latte', 14, 20000, 37, ''),
+(63, '92528-milo.jpg', 'Milo', 18, 15000, 35, ''),
+(64, '79648-nasgor.jpg', 'Nasi Goreng Seafood', 1, 30000, 63, ''),
+(65, '59857-pisangcoklatkeju.jpg', 'Pisang Cokelat Keju', 2, 15000, 53, ''),
+(66, '88216-strawberryshortcake.jpg', 'Strawberry Shortcake', 2, 25000, 68, ''),
+(67, '11357-churros.jpg', 'Churros ', 2, 15000, 61, '');
 
 -- --------------------------------------------------------
 
@@ -89,11 +103,10 @@ INSERT INTO `tb_kategori_menu` (`id_kat`, `jenis_menu`, `kategori_menu`) VALUES
 (2, 1, 'Snack'),
 (4, 2, 'Kopi'),
 (8, 1, 'Traditional Food'),
-(12, 1, 'Sate'),
 (13, 2, 'Juice'),
 (14, 2, 'Teh'),
-(15, 1, 'Mie'),
-(16, 1, 'Gorengan');
+(17, 1, 'Makanan Ringan'),
+(18, 2, 'Minuman Lain');
 
 -- --------------------------------------------------------
 
@@ -115,8 +128,11 @@ CREATE TABLE `tb_list_order` (
 --
 
 INSERT INTO `tb_list_order` (`id_list_order`, `menu`, `kode_order`, `jumlah`, `catatan`, `status`) VALUES
-(7, 36, 24062715204, 5, '', 0),
-(9, 9, 24070103373, 12, 'Dibungkus daun pisang', NULL);
+(22, 52, 24070702537, 2, '', NULL),
+(23, 63, 24070702537, 3, '1 tidak pakai es', NULL),
+(24, 49, 24070612286, 7, '', NULL),
+(25, 57, 24070612286, 7, '', NULL),
+(26, 54, 24070612286, 7, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -129,7 +145,6 @@ CREATE TABLE `tb_order` (
   `pelanggan` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
   `meja` int NOT NULL,
   `pelayan` int NOT NULL,
-  `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `waktu_order` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -137,11 +152,12 @@ CREATE TABLE `tb_order` (
 -- Dumping data for table `tb_order`
 --
 
-INSERT INTO `tb_order` (`id_order`, `pelanggan`, `meja`, `pelayan`, `status`, `waktu_order`) VALUES
-(24062715204, 'Hisan Fairuzi', 2, 1, '', '2024-06-27 09:25:21'),
-(24070103373, 'Agus Lapar Bu', 2, 26, NULL, '2024-06-30 20:38:30'),
-(24070320312, 'Ronaldo SUIII', 7, 26, NULL, '2024-07-03 13:32:04'),
-(24070320328, 'Jhin', 4, 26, NULL, '2024-07-03 13:32:31');
+INSERT INTO `tb_order` (`id_order`, `pelanggan`, `meja`, `pelayan`, `waktu_order`) VALUES
+(24062715204, 'Hisan Fairuzi', 2, 1, '2024-06-27 09:25:21'),
+(24070103373, 'Agus Lapar Bu', 2, 26, '2024-06-30 20:38:30'),
+(24070320328, 'Jhin', 4, 26, '2024-07-03 13:32:31'),
+(24070612286, 'Ronaldo SUI', 7, 26, '2024-07-06 20:29:30'),
+(24070702537, 'Luthfi Game Idaman', 69, 26, '2024-07-06 19:53:54');
 
 -- --------------------------------------------------------
 
@@ -166,7 +182,7 @@ CREATE TABLE `tb_user` (
 INSERT INTO `tb_user` (`id`, `nama`, `username`, `password`, `level`, `nohp`, `alamat`) VALUES
 (1, 'Husni Aripin', 'husni@gmail.com', '4297f44b13955235245b2497399d7a93', 1, '082127892622', 'Cipunagara'),
 (24, 'Faisal Sidik', 'faisal@gmail.com', '4297f44b13955235245b2497399d7a93', 2, '082127892613', 'jabong'),
-(26, 'Bagus Nurlana', 'bagus@gmail.com', '4297f44b13955235245b2497399d7a93', 1, '082127892126', 'Kampus'),
+(26, 'Bagus Nurlana', 'bagus@gmail.com', 'cc25da2aae1af78170f58692b36fefba', 1, '085315375086', 'Tegal Kalapa'),
 (27, 'Wisnu Saputra', 'wisnu@gmail.com', '4297f44b13955235245b2497399d7a93', 4, '082127892124', 'Pagaden'),
 (28, 'Ari Faturrahman', 'ari@gmail.com', '4297f44b13955235245b2497399d7a93', 2, '082127892125', 'Ciasem'),
 (29, 'Marselina Nur Azzahra', 'marselina@gmail.com', '4297f44b13955235245b2497399d7a93', 3, '082127892123', 'JalanCagak');
@@ -223,19 +239,19 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_daftar_menu`
 --
 ALTER TABLE `tb_daftar_menu`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `tb_kategori_menu`
 --
 ALTER TABLE `tb_kategori_menu`
-  MODIFY `id_kat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_kat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tb_list_order`
 --
 ALTER TABLE `tb_list_order`
-  MODIFY `id_list_order` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_list_order` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
