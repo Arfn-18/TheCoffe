@@ -285,7 +285,7 @@ $select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kateg
                     <table class="table table-striped table-hover table-sm" id="example">
                         <thead>
                             <tr class="text-nowrap">
-                                <th scope="col">No</th>
+                                <!-- <th scope="col">No</th> -->
                                 <th scope="col">Picture</th>
                                 <th scope="col">Nama Menu</th>
                                 <th scope="col">Harga</th>
@@ -298,11 +298,11 @@ $select_kat_menu = mysqli_query($con, "SELECT id_kat,kategori_menu FROM tb_kateg
                         </thead>
                         <tbody>
                             <?php
-                            $no = 1;
+                            // $no = 1;
                             foreach ($daftar_menu as $row) {
                             ?>
                                 <tr class="align-middle">
-                                    <th scope="row"><?= $no++ ?></th>
+                                    <!-- <th scope="row"><?= $no++ ?></th> -->
                                     <td>
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#viewUser<?= $row['id']; ?>">
                                             <div style="width: 76px;">
