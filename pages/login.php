@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 if (!empty($_SESSION['username_thecoffe'])) {
     header('location:home');
 }
@@ -149,7 +149,7 @@ if (!empty($_SESSION['username_thecoffe'])) {
         <form class="needs-validation" novalidate action="controller/proses_login.php" method="POST">
             <!-- <i class="bi bi-yin-yang fs-1 mb-3"></i> -->
             <h1 class="h3 mb-3 fw-semibold">Login</h1>
-            <p>Belum mempunyai akun? <a href="https://www.instagram.com/husni.arfn/" target="_blank">Minta Buatkan kepada admin!</a></p>
+            <p>Belum mempunyai akun? <a href="#">Buat akun</a></p>
 
             <div class="form-floating">
                 <input name="username" type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com" required>
@@ -173,7 +173,7 @@ if (!empty($_SESSION['username_thecoffe'])) {
                 </label>
             </div>
             <button class="btn btn-primary w-100 py-2" name="submit_validate" type="submit" value="submit">Login</button>
-            <p class="mt-5 mb-3 text-body-secondary text-center">&copy;<?php echo date("Y") ?> TheCoffe, All Right Reserved.</p>
+            <p class="mt-5 mb-3 text-body-secondary text-center">&copy;2024 FollowUp, All Right Reserved.</p>
         </form>
     </main>
 

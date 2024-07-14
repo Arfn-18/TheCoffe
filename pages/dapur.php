@@ -190,6 +190,7 @@ $select_daftar_menu = mysqli_query($con, "SELECT id,nama_menu FROM tb_daftar_men
                                         <td><?= $row['waktu_order'] ?></td>
                                         <td class="text-nowrap"><?= $row['nama_menu'] ?></td>
                                         <td><?= $row['jumlah'] ?></td>
+                                        <td><?= $row['catatan'] ?></td>
                                         <td>
                                             <?php
                                             if ($row['status'] == 1) {
@@ -199,11 +200,10 @@ $select_daftar_menu = mysqli_query($con, "SELECT id,nama_menu FROM tb_daftar_men
                                             }
                                             ?>
                                         </td>
-                                        <td><?= $row['catatan'] ?></td>
                                         <td>
                                             <div class="d-flex gap-1">
-                                                <button class="<?php echo (!empty($row['status'])) ? "btn btn-secondary btn-sm disabled" : "btn btn-primary btn-sm"; ?>" title="Detail" data-bs-toggle="modal" data-bs-target="#terima<?= $row['id_list_order']; ?>">Terima</i></button>
-                                                <button class="text-nowrap <?php echo (empty($row['status']) || $row['status'] != 1) ? "btn btn-secondary btn-sm disabled" : "btn btn-success btn-sm"; ?>" title="Detail" data-bs-toggle="modal" data-bs-target="#siapsaji<?= $row['id_list_order']; ?>">Siap Saji</button>
+                                                <button class="<?php echo (!empty($row['status'])) ? "btn btn-secondary btn-sm disabled" : "btn btn-primary btn-sm"; ?>" title="Terima" data-bs-toggle="modal" data-bs-target="#terima<?= $row['id_list_order']; ?>">Terima</i></button>
+                                                <button class="text-nowrap <?php echo (empty($row['status']) || $row['status'] != 1) ? "btn btn-secondary btn-sm disabled" : "btn btn-success btn-sm"; ?>" title="Siap Saji" data-bs-toggle="modal" data-bs-target="#siapsaji<?= $row['id_list_order']; ?>">Siap Saji</button>
                                             </div>
                                         </td>
                                     </tr>

@@ -1,3 +1,3 @@
-<div class="fixed-bottom bg-body-tertiary text-center py-2">
+<div class="fixed-bottom text-center mb-3">
     &copy;2024 TheCoffe, All Right Reserved.
 </div>

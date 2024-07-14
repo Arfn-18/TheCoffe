@@ -338,8 +338,8 @@ $select_daftar_menu = mysqli_query($con, "SELECT id,nama_menu FROM tb_daftar_men
                                     <td>Rp.<?= number_format($row['total_harga'], 0, ',', '.') ?></td>
                                     <td>
                                         <div class="d-flex gap-1">
-                                            <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary btn-sm disabled" : "btn btn-warning btn-sm"; ?>" title="Detail" data-bs-toggle="modal" data-bs-target="#editItem<?= $row['id_list_order']; ?>"><i class="bi bi-pencil-square"></i></button>
-                                            <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary btn-sm disabled" : "btn btn-danger btn-sm"; ?>" title="Detail" data-bs-toggle="modal" data-bs-target="#deleteItem<?= $row['id_list_order']; ?>"><i class="bi bi-trash3"></i></button>
+                                            <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary btn-sm disabled" : "btn btn-warning btn-sm"; ?>" title="Edit" data-bs-toggle="modal" data-bs-target="#editItem<?= $row['id_list_order']; ?>"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="<?php echo (!empty($row['id_bayar'])) ? "btn btn-secondary btn-sm disabled" : "btn btn-danger btn-sm"; ?>" title="Delete" data-bs-toggle="modal" data-bs-target="#deleteItem<?= $row['id_list_order']; ?>"><i class="bi bi-trash3"></i></button>
                                         </div>
                                     </td>
                                 </tr>

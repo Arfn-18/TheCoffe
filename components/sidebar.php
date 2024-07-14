@@ -14,39 +14,24 @@
                         <li class="nav-item">
                             <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'dashboard') ? 'active' : '' ?>" aria-current="page" href="dashboard"><i class="bi bi-house-door"></i> Dashboard</a>
                         </li>
-
-                        <?php if($hasil['level']==1 || $hasil['level']==2 || $hasil['level']==3){?>
                         <li class="nav-item">
-                            <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'menu') ? 'active' : '' ?>" aria-current="page" href="menu"><i class="bi bi-grid"></i> Daftar Menu</a>
+                            <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'menu') ? 'active' : '' ?>" aria-current="page" href="#"><i class="bi bi-grid"></i> Daftar Menu</a>
                         </li>
-                        <?php } ?>
-
-                        <?php if($hasil['level']==1){?>
                         <li class="nav-item">
-                            <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'kategori') ? 'active' : '' ?>" aria-current="page" href="kategori"><i class="bi bi-tags"></i> Kategori Menu</a>
+                            <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'category') ? 'active' : '' ?>" aria-current="page" href="#"><i class="bi bi-tags"></i> Kategori Menu</a>
                         </li>
-                        <?php } ?>
-
-                        <?php if($hasil['level']==1 || $hasil['level']==2 || $hasil['level']==3){?>
                         <li class="nav-item">
                             <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'order') ? 'active' : '' ?>" aria-current="page" href="order"><i class="bi bi-bag-dash"></i> Order</a>
                         </li>
-                        <?php } ?>
-
-                        <?php if($hasil['level']==1 || $hasil['level']==4){?>
                         <li class="nav-item">
-                            <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'dapur') ? 'active' : '' ?>" aria-current="page" href="dapur"><i class="bi bi-fire"></i> Dapur</a>
+                            <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'dapur') ? 'active' : '' ?>" aria-current="page" href="#"><i class="bi bi-fire"></i> Dapur</a>
                         </li>
-                        <?php } ?>
-
-                        <?php if($hasil['level']==1){?>
                         <li class="nav-item">
                             <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'user') ? 'active' : '' ?>" aria-current="page" href="user"><i class="bi bi-person-vcard"></i> User</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link ps-2 <?php echo(isset($_GET['page']) && $_GET['page'] == 'report') ? 'active' : '' ?>" aria-current="page" href="report"><i class="bi bi-clipboard-data"></i> Report</a>
                         </li>
-                        <?php } ?>
                     </ul>
                 </div>
             </div>
